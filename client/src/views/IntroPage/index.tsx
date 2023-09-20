@@ -1,6 +1,6 @@
 import React from 'react'
 
-function IntroPage() {
+const IntroPage = () => {
   return (
     <div>welcome page here</div>
   )

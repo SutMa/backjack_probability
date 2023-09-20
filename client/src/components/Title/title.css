@@ -1,0 +1,87 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&family=Source+Sans+3:wght@300&display=swap');
+
+.backgroundImageHolder{
+    background-image: url('../assets/image/poker-cards.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.info {
+    font-size: 30px;
+   text-wrap: wrap;
+    width: 500px;
+    padding: 20px;
+    color: white;
+}
+
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.titleHolder{
+    flex-direction: column;
+    display: flex; /* Use Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh;
+}
+
+.title {
+    font-size: 100px!important;
+    font-family: 'Lobster Two', cursive, 'Source Sans 3', sans-serif;
+    padding-left: 64px;
+    padding-right: 64px;
+    background: linear-gradient(to right, hsl(57, 92%, 50%, 0.714) 0, hsl(0, 0%, 100%) 10%, hsla(57, 92%, 50%, 0.714) 20%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: black;
+    animation: shine 3s infinite linear;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 0;
+    }
+    60% {
+        background-position: 400px;
+    }
+    60% {
+        background-position: 700px;
+    }
+    100% {
+        background-position: 800px;
+    }
+}
