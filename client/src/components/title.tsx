@@ -1,13 +1,15 @@
 import React from 'react'
 
-function title() {
+import '../styles/title.css'
+
+function Title() {
   return (
-    <div>Hello</div>
+    <div className='titleHolder'>
+      <h1 className='animate__animated animate__pulse animate__infinite title'>Blackjack Pobability</h1>
+      <button>Start</button>
+    </div>
+      
   )
 }
 
-export default title
-
-
-
-
+export default Title;

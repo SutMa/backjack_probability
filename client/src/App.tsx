@@ -1,11 +1,15 @@
-import React from 'react';
+
+import { useState } from 'react'
 import './App.css'
-import IntroPage from './views/introPage'
+import Welcome from './views/welcome'
 
 function App() {
-  
+
   return (
-    <div><IntroPage/></div>
+    <div>
+      <Welcome />
+    </div>
+
   )
 }
 
