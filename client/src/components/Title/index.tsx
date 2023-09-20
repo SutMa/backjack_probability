@@ -1,7 +1,5 @@
-import React from 'react'
 import {useNavigate} from 'react-router-dom';
-
-import '../../styles/title.css'
+import './title.css'
 
 const Title = () => {
 
@@ -13,8 +11,12 @@ const Title = () => {
 
   return (
     <div className='titleHolder'>
-      <h1 className='animate__animated animate__pulse animate__infinite title'>Blackjack Pobability</h1>
-      <button onClick={handleClick}>Start</button>
+      <h1 className='title'>Blackjack Probability</h1>
+      <p className='info'>
+        Ever wanted to learn how to become a true professional at Blackjack?
+        Well click 'Get Started' below to learn how you can!
+      </p>
+      <button className='btn-hover' onClick={handleClick}>Get Started</button>
     </div>
       
   )
