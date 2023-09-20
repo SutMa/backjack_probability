@@ -1,8 +1,8 @@
 import React from 'react'
-import Title from '../components/title'
+import Title from '../components/Title'
 
 
-function Welcome() {
+const Welcome = () => {
   return (
     <div>
       <Title></Title>
