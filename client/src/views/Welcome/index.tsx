@@ -3,9 +3,7 @@ import Title from '../../components/Title'
 
 const Welcome = () => {
   return (
-    <div style={{
-      backgroundColor: 'green',
-    }}>
+    <div>
       <Title />
     </div>
   )
