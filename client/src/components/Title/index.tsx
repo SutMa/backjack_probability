@@ -10,7 +10,8 @@ const Title = () => {
   }
 
   return (
-    <div className='titleHolder'>
+    <div className='background'>
+      <div className='titleHolder'>
       <h1 className='title'>Blackjack Probability</h1>
       <p className='info'>
         Ever wanted to learn how to become a true professional at Blackjack?
@@ -18,6 +19,8 @@ const Title = () => {
       </p>
       <button className='btn-hover' onClick={handleClick}>Get Started</button>
     </div>
+    </div>
+    
       
   )
 }

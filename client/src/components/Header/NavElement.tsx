@@ -3,8 +3,6 @@ import {NavLink as Link} from 'react-router-dom';
 
 export const PrimaryNav = styled.nav`
     z-index: 14;
-    margin-left: 200px;
-    margin-right: 200px;
     height: 90px;
     display: flex;
     background: #000000;

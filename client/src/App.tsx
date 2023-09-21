@@ -7,7 +7,7 @@ import About from "./views/About";
 
 const App = () => {
   return (
-    <div className="background">
+    <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Welcome />}/>
