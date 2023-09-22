@@ -1,13 +1,12 @@
 import Title from '../../components/Title'
+import WelcomeInfo from '../../components/WelcomeInfo'
 
 
 const Welcome = () => {
   return (
     <div>
       <Title />
-      <p>
-        More information here
-      </p>
+      <WelcomeInfo />
     </div>
   )
 }
