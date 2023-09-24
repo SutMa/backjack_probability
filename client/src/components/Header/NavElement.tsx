@@ -5,7 +5,7 @@ export const PrimaryNav = styled.nav`
     z-index: 14;
     height: 90px;
     display: flex;
-    background: #000000;
+    background: #333333;
     justify-content: space-evenly;
     padding: 0.18rem calc((100vw - 1000px) / 2);
 `
