@@ -13,6 +13,12 @@ const Navbar = () => {
                     <MenuLink to="/about">
                         About
                     </MenuLink>
+                    <MenuLink to="/charts">
+                        Charts
+                    </MenuLink>
+                    <MenuLink to="/settings">
+                        Settings
+                    </MenuLink>
                     <CgCardSpades size="50px" color='red'/>
                 </Menu>
             </PrimaryNav>
