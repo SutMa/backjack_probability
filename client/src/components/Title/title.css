@@ -13,9 +13,8 @@
     background-repeat: no-repeat;
     background-color: darkgreen;
     background-size: contain;
-    width: '100vw';
-    height: '100vh';
-    padding: '15px';
+    height: 80vh;
+    padding: 15px;
 }
 
 .row {
@@ -84,14 +83,13 @@
     display: flex; /* Use Flexbox for centering */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    height: 100vh;
+    height: 75vh;
 }
 
 .title {
     font-size: 100px!important;
+    margin: 0;
     font-family: 'Lobster Two', cursive, 'Source Sans 3', sans-serif;
-    padding-left: 64px;
-    padding-right: 64px;
     background: linear-gradient(to right, hsl(57, 92%, 50%, 0.714) 0, hsl(0, 0%, 100%) 10%, hsla(57, 92%, 50%, 0.714) 20%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
