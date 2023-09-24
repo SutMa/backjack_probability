@@ -3,9 +3,38 @@
 
 .backgroundImageHolder{
     background-image: url('../assets/image/poker-cards.png');
-    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("../../assets/images/blackjack-table.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: darkgreen;
+    background-size: contain;
+    width: '100vw';
+    height: '100vh';
+    padding: '15px';
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    flex: 1;
+    padding: 0 100px 0 0;
+}
+
+.pokerChipIcon {
+    padding: 15px;
+    color: red;
+}
+
+.pokerChipCurrency {
+    font-size: 30px;
+    color: white;
 }
 
 .info {
