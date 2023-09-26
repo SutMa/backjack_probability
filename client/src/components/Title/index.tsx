@@ -22,12 +22,12 @@ const Title = () => {
         <h1 className="title">Blackjack Probability</h1>
         <p className="info">
           Ever wanted to learn how to become a true professional at Blackjack?
-          Well click 'Get Started' below to learn how you can!
+          Well click 'Learn the Game' below to learn how you can!
         </p>
         <div className='column'>
           <div className='row'>
             <button className="btn-hover" onClick={handleCalculateClick}>
-              Calculate the Odds
+              Learn the Game
             </button>
             <button className="btn-hover" onClick={handlePlayGameClick}>
               Play the Game

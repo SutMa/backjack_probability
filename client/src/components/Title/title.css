@@ -13,7 +13,7 @@
     background-repeat: no-repeat;
     background-color: darkgreen;
     background-size: contain;
-    height: 80vh;
+    height: 85vh;
     padding: 15px;
 }
 
@@ -43,9 +43,10 @@
 .info {
     font-size: 30px;
    text-wrap: wrap;
-    width: 500px;
+    width: 550px;
     padding: 20px;
     color: white;
+    text-align: center;
 }
 
 .btn-hover {
@@ -87,7 +88,7 @@
     display: flex; /* Use Flexbox for centering */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    height: 80vh;
+    height: 90vh;
 }
 
 .title {

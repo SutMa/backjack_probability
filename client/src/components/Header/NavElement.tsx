@@ -3,9 +3,9 @@ import {NavLink as Link} from 'react-router-dom';
 
 export const PrimaryNav = styled.nav`
     z-index: 14;
-    height: 90px;
+    height: 65px;
     display: flex;
-    background: #333333;
+    background: #000000;
     justify-content: space-evenly;
     padding: 0.18rem calc((100vw - 1000px) / 2);
 `
