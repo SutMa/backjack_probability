@@ -1,0 +1,31 @@
+img {
+    height: 350px;
+    width: 350px;
+}
+
+.about-row {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-header {
+    font-size: 36px;
+}
+
+.about-p {
+    font-size: 20px;
+}
+
+.text-holder {
+    width: 400px;
+    text-align: center;
+}

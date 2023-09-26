@@ -21,7 +21,7 @@ const WelcomeInfo = () => {
             </div>
             <div className='subContainer'>
                 <img className='image' src={PiggyBank} />
-                <p className='titleText'>Customize Your Playing Area!</p>
+                <p className='titleText'>Learn Without Spending a Dime!</p>
             </div>
         </div>
     )

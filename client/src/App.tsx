@@ -6,7 +6,7 @@ import About from "./views/About";
 import NotFound from "./views/NotFound";
 import Charts from "./views/Charts";
 import Settings from "./views/Settings";
-import Calculator from "./views/Calculator";
+import Learn from "./views/Learn";
 import Game from "./views/Game";
 import Customize from "./views/Customize";
 
@@ -16,10 +16,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Welcome />}/>
-        <Route path="/about" element={<About />}/>
+        <Route path="/about-us" element={<About />}/>
         <Route path="/charts" element={<Charts />}/>
         <Route path="/settings" element={<Settings />}/>
-        <Route path="/calculator" element={<Calculator />}/>
+        <Route path="/learn" element={<Learn />}/>
         <Route path="/game" element={<Game />}/>
         <Route path="/customize" element={<Customize />}/>
         <Route path="*" element={<NotFound />}/>

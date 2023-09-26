@@ -10,8 +10,8 @@ const Navbar = () => {
                     <MenuLink to="/">
                         Home
                     </MenuLink>
-                    <MenuLink to="/about">
-                        About
+                    <MenuLink to="/about-us">
+                        About Us
                     </MenuLink>
                     <MenuLink to="/charts">
                         Charts

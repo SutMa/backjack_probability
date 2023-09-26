@@ -5,7 +5,7 @@ const Title = () => {
   const navigate = useNavigate();
 
   const handleCalculateClick = () => {
-    navigate("/calculator");
+    navigate("/learn");
   };
 
   const handlePlayGameClick = () => {
