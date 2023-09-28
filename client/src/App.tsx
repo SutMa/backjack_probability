@@ -5,7 +5,7 @@ import Navbar from "./components/Header";
 import About from "./views/About";
 import NotFound from "./views/NotFound";
 import Charts from "./views/Charts";
-import Settings from "./views/Settings";
+import Terms from "./views/Terms";
 import Learn from "./views/Learn";
 import Game from "./views/Game";
 import Customize from "./views/Customize";
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/" element={<Welcome />}/>
         <Route path="/about-us" element={<About />}/>
         <Route path="/charts" element={<Charts />}/>
-        <Route path="/settings" element={<Settings />}/>
+        <Route path="/terms" element={<Terms />}/>
         <Route path="/learn" element={<Learn />}/>
         <Route path="/game" element={<Game />}/>
         <Route path="/customize" element={<Customize />}/>

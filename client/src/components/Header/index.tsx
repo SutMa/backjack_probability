@@ -16,8 +16,8 @@ const Navbar = () => {
                     <MenuLink to="/charts">
                         Charts
                     </MenuLink>
-                    <MenuLink to="/settings">
-                        Settings
+                    <MenuLink to="/terms">
+                        Terms
                     </MenuLink>
                     <CgCardSpades size="50px" color='red'/>
                 </Menu>

@@ -1,9 +1,9 @@
-const Calculator = () => {
+const Learn = () => {
     return (
         <div>
-            Calculator Mode
+            Learn Mode
         </div>
     )
 }
 
-export default Calculator;
+export default Learn;

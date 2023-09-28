@@ -1,10 +1,10 @@
 import './NotFound.css';
+import Error from '../../assets/images/404Error.svg';
 
 const NotFound = () => {
     return (
         <div className="errorContainer">
-            <h1 className="errorMessage">Error 404: Page Not Found</h1>
-            <h3 className="errorSadness">:(</h3>
+            <img src={Error} className='error-img'/>
         </div>
     )
 }
