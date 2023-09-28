@@ -1,60 +1,82 @@
-import './Charts.css';
-import {useState} from 'react';
-import {chart1, chart2, dealerRow} from '../../data/chartTables';
+import "./Charts.css";
+import { useState } from "react";
+import jsonData from "../../data/charts.json";
 
 const Charts = () => {
+  const chart1 = JSON.parse(JSON.stringify(jsonData.chart1));
+  console.log(chart1.data);
+  const chart2 = JSON.parse(JSON.stringify(jsonData.chart2));
+  console.log(chart2);
+  const dealerRow = JSON.parse(JSON.stringify(jsonData.dealerRow));
+  console.log(dealerRow);
 
-    const [chart,setChart] = useState(chart1);
+  const [chart, setChart] = useState(chart1);
 
-    const handleClick = () => {
-        setChart(chart2);
-    }
+  const handleClick = () => {
+    setChart(chart2);
+  };
 
-    return (
-        <div className='table-container'>
-            <table>
-                <tr>
-                    <th>{`Dealer's Card\nYour Hand`}</th>
-                    {dealerRow.map((data, i) => {
-                        return <th key={i}>{data}</th>
-                    })}
-                </tr>
-                {chart.data.map((data, i) => {
-                    return (
-                        <tr key={i}>
-                            <th>{data.label}</th>
-                            {data.value.map((value) => {
-                                return <td style={{
-                                    backgroundColor: value == 'H' ? 'green' : 'red'
-                                }}>{value}</td>
-                            })}
-                        </tr>
-                    )
+  return (
+    <div className="table-container">
+      <table>
+        <tr>
+          <th>{`Dealer's Card\nYour Hand`}</th>
+          {dealerRow.map((data: number, i: number) => {
+            return <th key={i}>{data}</th>;
+          })}
+        </tr>
+        {chart.data.map(
+          (data: { label: string; value: string[] }, i: number) => {
+            return (
+              <tr key={i}>
+                <th>{data.label}</th>
+                {data.value.map((value) => {
+                  return (
+                    <td
+                      style={{
+                        backgroundColor: value == "H" ? "green" : "red",
+                      }}
+                    >
+                      {value}
+                    </td>
+                  );
                 })}
-            </table>
-            <table>
-                <tr>
-                    <th>Your Hand\Dealer's Card</th>
-                    {dealerRow.map((data, i) => {
-                        return <th key={i}>{data}</th>
-                    })}
-                </tr>
-                {chart.data2.map((data, i) => {
-                    return (
-                        <tr key={i}>
-                            <th>{data.label}</th>
-                            {data.value.map((value) => {
-                                return <td style={{
-                                    backgroundColor: value == 'H' ? 'green' : 'red'
-                                }}>{value}</td>
-                            })}
-                        </tr>
-                    )
+              </tr>
+            );
+          }
+        )}
+      </table>
+      <table>
+        <tr>
+          <th>Your Hand\Dealer's Card</th>
+          {dealerRow.map((data: number, i: number) => {
+            return <th key={i}>{data}</th>;
+          })}
+        </tr>
+        {chart.data2.map(
+          (data: { label: string; value: string[] }, i: number) => {
+            return (
+              <tr key={i}>
+                <th>{data.label}</th>
+                {data.value.map((value) => {
+                  return (
+                    <td
+                      style={{
+                        backgroundColor: value == "H" ? "green" : "red",
+                      }}
+                    >
+                      {value}
+                    </td>
+                  );
                 })}
-            </table>
-            <button onClick={handleClick}>Switch Charts</button>
-        </div>
-    )
-}
+              </tr>
+            );
+          }
+        )}
+      </table>
+      <button onClick={handleClick}>Switch Charts</button>
+    </div>
+  );
+};
 
 export default Charts;
