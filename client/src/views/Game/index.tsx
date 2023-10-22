@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Status from "./Status";
-import Controls from "./Controls";
-import Hand from "./Hand";
+import Status from "../../components/Status";
+import Hand from "../../components/Hand";
 import jsonData from "../../data/deck.json";
-import styles from './styles/Game.module.css';
+import styles from "./Game.module.css";
 
 const Game: React.FC = () => {
   enum GameState {
@@ -20,7 +19,7 @@ const Game: React.FC = () => {
   }
 
   enum Message {
-    bet = "Place a Bet!",
+    bet = "Press Play to Start!",
     hitStand = "Hit or Stand?",
     bust = "Bust!",
     userWin = "You Win!",
@@ -38,9 +37,6 @@ const Game: React.FC = () => {
   const [dealerCards, setDealerCards]: any[] = useState([]);
   const [dealerScore, setDealerScore] = useState(0);
   const [dealerCount, setDealerCount] = useState(0);
-
-  const [balance, setBalance] = useState(100);
-  const [bet, setBet] = useState(0);
 
   const [gameState, setGameState] = useState(GameState.bet);
   const [message, setMessage] = useState(Message.bet);
@@ -92,6 +88,10 @@ const Game: React.FC = () => {
     }
   }, [dealerCount]);
 
+  const playGame = () => {
+    setGameState(GameState.init);
+  };
+
   const resetGame = () => {
     console.clear();
     setDeck(data);
@@ -104,8 +104,6 @@ const Game: React.FC = () => {
     setDealerScore(0);
     setDealerCount(0);
 
-    setBet(0);
-
     setGameState(GameState.bet);
     setMessage(Message.bet);
     setButtonState({
@@ -113,12 +111,6 @@ const Game: React.FC = () => {
       standDisabled: false,
       resetDisabled: true,
     });
-  };
-
-  const placeBet = (amount: number) => {
-    setBet(amount);
-    setBalance(Math.round((balance - amount) * 100) / 100);
-    setGameState(GameState.init);
   };
 
   const drawCard = (dealType: Deal) => {
@@ -242,30 +234,29 @@ const Game: React.FC = () => {
 
   const checkWin = () => {
     if (userScore > dealerScore || dealerScore > 21) {
-      setBalance(Math.round((balance + bet * 2) * 100) / 100);
       setMessage(Message.userWin);
     } else if (dealerScore > userScore) {
       setMessage(Message.dealerWin);
     } else {
-      setBalance(Math.round((balance + bet * 1) * 100) / 100);
       setMessage(Message.tie);
     }
   };
 
   return (
     <div className={styles.gameBackground}>
-      <Status message={message} balance={balance} />
-      <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
-      <Hand title={`Your Hand (${userScore})`} cards={userCards} />
-      <Controls
-        balance={balance}
+      <Status
+        message={message}
         gameState={gameState}
         buttonState={buttonState}
-        betEvent={placeBet}
-        hitEvent={hit}
-        standEvent={stand}
-        resetEvent={resetGame}
+        playGame={playGame}
+        hit={hit}
+        stand={stand}
+        resetGame={resetGame}
       />
+      <div className={styles.handSection}>
+        <Hand title={`Dealer's Hand (${dealerScore})`} cards={dealerCards} />
+        <Hand title={`Your Hand (${userScore})`} cards={userCards} />
+      </div>
     </div>
   );
 };

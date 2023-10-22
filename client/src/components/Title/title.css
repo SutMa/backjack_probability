@@ -21,13 +21,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex: 1;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .pokerChipIcon {

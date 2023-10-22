@@ -1,0 +1,16 @@
+.gameBackground {
+    background-color: green;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.handSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    min-height: 100vh;
+}

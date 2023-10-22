@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './styles/Hand.module.css';
-import Card from './Card';
+import styles from './Hand.module.css';
+import Card from '../Card';
 
 type HandProps = {
   title: string,
