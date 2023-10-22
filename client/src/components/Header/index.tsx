@@ -1,5 +1,6 @@
 import { PrimaryNav, MenuLink, Menu } from "./NavElement";
 import { CgCardSpades } from "react-icons/cg";
+import { HOME, ABOUT_US, CHARTS, TERMS } from "../../data/routes";
 
 const Navbar = () => {
     return (
@@ -7,16 +8,16 @@ const Navbar = () => {
             <PrimaryNav>
                 <Menu>
                     <CgCardSpades size="50px" color='red'/>
-                    <MenuLink to="/">
+                    <MenuLink to={HOME}>
                         Home
                     </MenuLink>
-                    <MenuLink to="/about-us">
+                    <MenuLink to={ABOUT_US}>
                         About Us
                     </MenuLink>
-                    <MenuLink to="/charts">
+                    <MenuLink to={CHARTS}>
                         Charts
                     </MenuLink>
-                    <MenuLink to="/terms">
+                    <MenuLink to={TERMS}>
                         Terms
                     </MenuLink>
                     <CgCardSpades size="50px" color='red'/>
