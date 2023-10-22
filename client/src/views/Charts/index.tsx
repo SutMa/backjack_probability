@@ -4,11 +4,8 @@ import jsonData from "../../data/charts.json";
 
 const Charts = () => {
   const chart1 = JSON.parse(JSON.stringify(jsonData.chart1));
-  console.log(chart1.data);
   const chart2 = JSON.parse(JSON.stringify(jsonData.chart2));
-  console.log(chart2);
   const dealerRow = JSON.parse(JSON.stringify(jsonData.dealerRow));
-  console.log(dealerRow);
 
   const [chart, setChart] = useState(chart1);
 

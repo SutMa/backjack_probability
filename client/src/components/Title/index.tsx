@@ -1,19 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import "./title.css";
+import { LEARN, GAME, CUSTOMIZE } from "../../data/routes";
 
 const Title = () => {
   const navigate = useNavigate();
 
   const handleCalculateClick = () => {
-    navigate("/learn");
+    navigate(LEARN);
   };
 
   const handlePlayGameClick = () => {
-    navigate("/game");
+    navigate(GAME);
   }
 
   const handleCustomizeClick = () => {
-    navigate("/customize");
+    navigate(CUSTOMIZE);
   }
 
   return (
