@@ -22,6 +22,7 @@ const Game: React.FC = () => {
     bet = "Press Play to Start!",
     hitStand = "Hit or Stand?",
     bust = "Bust!",
+    blackjack = "Blackjack!",
     userWin = "You Win!",
     dealerWin = "Dealer Wins!",
     tie = "Tie!",
@@ -70,8 +71,12 @@ const Game: React.FC = () => {
   useEffect(() => {
     if (gameState === GameState.userTurn) {
       if (userScore === 21) {
-        buttonState.hitDisabled = true;
-        setButtonState({ ...buttonState });
+        if (userCards.length === 2) {
+          blackjack();
+        } else {
+          buttonState.hitDisabled = true;
+          setButtonState({ ...buttonState });
+        }
       } else if (userScore > 21) {
         bust();
       }
@@ -230,6 +235,14 @@ const Game: React.FC = () => {
     buttonState.resetDisabled = false;
     setButtonState({ ...buttonState });
     setMessage(Message.bust);
+  };
+
+  const blackjack = () => {
+    buttonState.hitDisabled = true;
+    buttonState.standDisabled = true;
+    buttonState.resetDisabled = false;
+    setButtonState({ ...buttonState });
+    setMessage(Message.blackjack);
   };
 
   const checkWin = () => {
