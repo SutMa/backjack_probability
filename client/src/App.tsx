@@ -9,7 +9,7 @@ import Terms from "./views/Terms";
 import Game from "./views/Game";
 import Customize from "./views/Customize";
 import * as ROUTES from "./data/routes";
-import { CardColor, CardStyle, MyCardContext } from "./modules/cardColor";
+import { CardColor, CardStyle, MyCardContext } from "./modules/cardData";
 import { useState } from "react";
 
 const App = () => {

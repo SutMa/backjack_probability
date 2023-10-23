@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card.module.css";
-import { CardColor, CardStyle, useCardContext } from "../../modules/cardColor";
+import { CardColor, CardStyle, useCardContext } from "../../modules/cardData";
 
 type CardProps = {
   value: string;

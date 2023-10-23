@@ -1,5 +1,5 @@
 import Card from "../../components/Card";
-import { useCardContext, CardColor, CardStyle } from "../../modules/cardColor";
+import { useCardContext, CardColor, CardStyle } from "../../modules/cardData";
 import "./Customize.css";
 
 const Customize = () => {
