@@ -9,10 +9,15 @@ import Terms from "./views/Terms";
 import Game from "./views/Game";
 import Customize from "./views/Customize";
 import * as ROUTES from "./data/routes";
+import { CardColor, CardStyle, MyCardContext } from "./modules/cardColor";
+import { useState } from "react";
 
 const App = () => {
+  const [cardColor, setCardColor] = useState<CardColor>(CardColor.RED);
+  const [cardStyle, setCardStyle] = useState<CardStyle>(CardStyle.BASE);
+
   return (
-    <div>
+    <MyCardContext.Provider value={{ cardColor, setCardColor, cardStyle, setCardStyle }}>
       <Navbar />
       <Routes>
         <Route path={ROUTES.HOME} element={<Welcome />}/>
@@ -23,7 +28,7 @@ const App = () => {
         <Route path={ROUTES.CUSTOMIZE} element={<Customize />}/>
         <Route path={ROUTES.NOT_FOUND} element={<NotFound />}/>
       </Routes>
-    </div>
+    </MyCardContext.Provider>
   );
 };
 

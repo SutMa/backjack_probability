@@ -13,7 +13,7 @@
     background-repeat: no-repeat;
     background-color: darkgreen;
     background-size: contain;
-    height: 85vh;
+    height: 100vh;
     padding: 15px;
 }
 
@@ -91,8 +91,6 @@
     background: linear-gradient(to right, hsl(57, 92%, 50%, 0.714) 0, hsl(0, 0%, 100%) 10%, hsla(57, 92%, 50%, 0.714) 20%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 2px;
-    -webkit-text-stroke-color: black;
     animation: shine 3s infinite linear;
 }
 

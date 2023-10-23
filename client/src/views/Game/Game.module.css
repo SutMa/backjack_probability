@@ -1,4 +1,7 @@
 .gameBackground {
+    background-image: url("../../assets/images/GF.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     background-color: green;
     display: flex;
     flex-direction: row;

@@ -1,85 +1,269 @@
 .card {
-    width: 130px;
-    height: 250px;
-    margin: 20px;
-    padding: 0.5em 1.5em;
-    background: rgb(230, 230, 230);
-    border-radius: 15px;
-    box-shadow: 0px 1px 10px rgb(0, 0, 0);
-    cursor: default;
+  width: 130px;
+  height: 250px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background: rgb(230, 230, 230);
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.baseStyleRed {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 8.33%,
+    #ff0000 8.33%,
+    #ff0000 50%,
+    #ffffff 50%,
+    #ffffff 58.33%,
+    #ff0000 58.33%,
+    #ff0000 100%
+  );
+  background-size: 60px 4.2px;
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.baseStyleBlue {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 8.33%,
+    #002aff 8.33%,
+    #002aff 50%,
+    #ffffff 50%,
+    #ffffff 58.33%,
+    #002aff 58.33%,
+    #002aff 100%
+  );
+  background-size: 60px 4.2px;
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.baseStyleGreen {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 8.33%,
+    #06fb06 8.33%,
+    #06fb06 50%,
+    #ffffff 50%,
+    #ffffff 58.33%,
+    #06fb06 58.33%,
+    #06fb06 100%
+  );
+  background-size: 60px 4.2px;
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.baseStyleUnique {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-color: #33cccc;
+  animation: baseStyleUniqueAnimation 9s infinite;
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+@keyframes baseStyleUniqueAnimation {
+  0% {
+    background: #33cccc;
   }
-  
+  20% {
+    background: #33cc36;
+  }
+  40% {
+    background: #b8cc33;
+  }
+  60% {
+    background: #fcca00;
+  }
+  80% {
+    background: #33cc36;
+  }
+  100% {
+    background: #33cccc;
+  }
+}
+
+.gradientStyleRed {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-color: #fc8e8e;
+  background-image: linear-gradient(62deg, #fc8e8e 0%, #fcc3c3 100%);
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.gradientStyleBlue {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.gradientStyleGreen {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-color: #8efc99;
+  background-image: linear-gradient(62deg, #8efc99 0%, #c3fcda 100%);
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.gradientStyleUnique {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-image: linear-gradient(to left, rgb(255, 196, 0), #ff357f 25%, #ff357f 75%, rgb(255, 196, 0) 100%);
+  background-size: 300% 300%;
+  -webkit-animation: gradientStyleUniqueAnimation 5s ease infinite;
+  animation: gradientStyleUniqueAnimation 5s ease infinite;
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+@-webkit-keyframes gradientStyleUniqueAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  40% {
+    background-position: 100% 50%;
+  }
+  60% {
+    background-position: 150% 100%;
+  }
+  100% {
+    background-position: 150% 150%;
+  }
+}
+
+@keyframes gradientStyleUniqueAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 150% 100%;
+  }
+  100% {
+    background-position: 150% 150%;
+  }
+}
+
+.testingStyle {
+  width: 125px;
+  height: 240px;
+  margin: 20px;
+  padding: 0.5em 1.5em;
+  background-color: #33cccc;
+  animation: animatedStyleColorChange 9s infinite;
+  border: 5px solid white;
+  border-radius: 15px;
+  box-shadow: 0px 1px 10px rgb(0, 0, 0);
+  cursor: default;
+}
+
+.black {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+.value {
+  font-size: 300%;
+  margin-top: 2px;
+}
+
+.suit {
+  font-size: 450%;
+  margin: 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+  .card {
+    width: 70px;
+    height: 180px;
+  }
+
   .hiddenCard {
-    width: 125px;
-    height: 240px;
-    margin: 20px;
-    padding: 0.5em 1.5em;
-    background-image: linear-gradient(176deg, #ffffff 8.33%, #ff0000 8.33%, #ff0000 50%, #ffffff 50%, #ffffff 58.33%, #ff0000 58.33%, #ff0000 100%);
-    background-size: 60.00px 4.20px;
-    border: 5px solid white;
-    border-radius: 15px;
-    box-shadow: 0px 1px 10px rgb(0, 0, 0);
-    cursor: default;
+    width: 60px;
+    height: 170px;
   }
-  
-  .black {
-    color: black;
-  }
-  
-  .red {
-    color: red;
-  }
-  
+
   .value {
     font-size: 300%;
-    margin-top: 2px;
   }
-  
+
   .suit {
-    font-size: 450%;
-    margin: 0;
-    text-align: center;
+    font-size: 500%;
   }
-  
-  @media screen and (max-width: 992px) {
-    .card {
-      width: 70px;
-      height: 180px;
-    }
-  
-    .hiddenCard {
-      width: 60px;
-      height: 170px;
-    }
-  
-    .value {
-      font-size: 300%;
-    }
-  
-    .suit {
-      font-size: 500%;
-    }
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 45px;
+    height: 100px;
+    padding: 5px 10px;
   }
-  
-  @media screen and (max-width: 600px) {
-    .card {
-      width: 45px;
-      height: 100px;
-      padding: 5px 10px;
-    }
-  
-    .hiddenCard {
-      width: 41px;
-      height: 96px;
-      padding: 5px 10px;
-      border: 2px solid white;
-    }
-  
-    .value {
-      font-size: 150%;
-    }
-  
-    .suit {
-      font-size: 250%;
-    }
+
+  .hiddenCard {
+    width: 41px;
+    height: 96px;
+    padding: 5px 10px;
+    border: 2px solid white;
   }
+
+  .value {
+    font-size: 150%;
+  }
+
+  .suit {
+    font-size: 250%;
+  }
+}
