@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Controls.module.css';
 
 type ControlsProps = {
@@ -11,8 +11,6 @@ type ControlsProps = {
 };
 
 const Controls: React.FC<ControlsProps> = ({ gameState, buttonState, playEvent, hitEvent, standEvent, resetEvent }) => {
-  const [inputStyle, setInputStyle] = useState(styles.input);
-
   const onBetClick = () => {
     playEvent();
   }
