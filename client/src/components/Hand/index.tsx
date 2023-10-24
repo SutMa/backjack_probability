@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './styles/Hand.module.css';
-import Card from './Card';
+import styles from './Hand.module.css';
+import Card from '../Card';
 
 type HandProps = {
   title: string,
@@ -18,7 +18,7 @@ const Hand: React.FC<HandProps> = ({ title, cards }) => {
   return (
     <div className={styles.handContainer}>
       {getTitle()}
-      <div className={styles.cardContainer}>
+      <div className={cards.length > 0 ? styles.cardContainer : ""}>
         {cards.map((card: any, index: number) => {
           return (
             <Card key={index} value={card.value} suit={card.suit} hidden={card.hidden} />

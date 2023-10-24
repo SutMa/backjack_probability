@@ -1,21 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import "./title.css";
-import { LEARN, GAME, CUSTOMIZE } from "../../data/routes";
+import { GAME, CUSTOMIZE } from "../../data/routes";
 
 const Title = () => {
   const navigate = useNavigate();
 
-  const handleCalculateClick = () => {
-    navigate(LEARN);
-  };
-
   const handlePlayGameClick = () => {
     navigate(GAME);
-  }
+  };
 
   const handleCustomizeClick = () => {
     navigate(CUSTOMIZE);
-  }
+  };
 
   return (
     <div className="background">
@@ -23,17 +19,12 @@ const Title = () => {
         <h1 className="title">Blackjack Probability</h1>
         <p className="info">
           Ever wanted to learn how to become a true professional at Blackjack?
-          Well click 'Learn the Game' below to learn how you can!
+          Well click 'Play' below to get started!
         </p>
-        <div className='column'>
-          <div className='row'>
-            <button className="btn-hover" onClick={handleCalculateClick}>
-              Learn the Game
-            </button>
-            <button className="btn-hover" onClick={handlePlayGameClick}>
-              Play the Game
-            </button>
-          </div>
+        <div className="row">
+          <button className="btn-hover" onClick={handlePlayGameClick}>
+            Play the Game
+          </button>
           <button className="btn-hover" onClick={handleCustomizeClick}>
             Customize Table
           </button>

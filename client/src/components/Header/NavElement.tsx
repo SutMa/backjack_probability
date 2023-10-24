@@ -6,8 +6,8 @@ export const PrimaryNav = styled.nav`
     height: 65px;
     display: flex;
     background: #000000;
-    justify-content: space-evenly;
-    padding: 0.18rem calc((100vw - 1000px) / 2);
+    justify-content: space-between;
+    padding: 0.18rem 20px;
 `
 
 export const MenuLink = styled(Link)`
@@ -26,4 +26,13 @@ export const MenuLink = styled(Link)`
 export const Menu = styled.div`
     display: flex;
     align-items: center;
+`
+
+export const Logo = styled.h1`
+    color: #fff;
+    display: flex;
+    text-decoration: none;
+    padding: 0 1.2rem;
+    height: 100%;
+    justify-content: left;
 `

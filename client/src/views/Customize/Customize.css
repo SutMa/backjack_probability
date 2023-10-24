@@ -1,0 +1,46 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 80vh;
+    min-width: 100vw;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 80vw;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button {
+    transition-duration: 0.4s;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    margin: 10px;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
+}
+
+.buttonSelected {
+    transition-duration: 0.4s;
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    margin: 10px;
+}

@@ -1,16 +1,15 @@
 .statusContainer {
-    display: flex;
-    justify-content: center;
   }
   
   .status {
+    height: 80vh;
+    width: 20vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 0.5em 0.5em 0.5em 1em;
+    margin-left: 100px;
     padding: 1em;
-    width: 40%;
-    height: 50px;
     background: black;
     border: 5px solid white;
     border-radius: 15px;
