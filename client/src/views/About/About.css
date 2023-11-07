@@ -1,31 +1,36 @@
+.container {
+  background: radial-gradient(rgb(51, 48, 48), #000000);
+}
+
 img {
-    height: 350px;
-    width: 350px;
+  height: 350px;
+  width: 350px;
 }
 
 .about-row {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .about-header {
-    font-size: 36px;
+  font-size: 36px;
 }
 
 .about-p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .text-holder {
-    width: 400px;
-    text-align: center;
+  width: 400px;
+  text-align: center;
+  color: white;
 }

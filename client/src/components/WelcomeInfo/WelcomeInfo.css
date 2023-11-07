@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    background: radial-gradient(rgb(51, 48, 48),#000000);
 }
 
 .subContainer {
@@ -17,4 +18,5 @@
 
 .titleText {
     font-size: 40px;
+    color: white;
 }

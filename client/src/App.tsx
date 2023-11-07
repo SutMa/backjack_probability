@@ -17,18 +17,22 @@ const App = () => {
   const [cardStyle, setCardStyle] = useState<CardStyle>(CardStyle.BASE);
 
   return (
-    <MyCardContext.Provider value={{ cardColor, setCardColor, cardStyle, setCardStyle }}>
-      <Navbar />
-      <Routes>
-        <Route path={ROUTES.HOME} element={<Welcome />}/>
-        <Route path={ROUTES.ABOUT_US} element={<About />}/>
-        <Route path={ROUTES.CHARTS} element={<Charts />}/>
-        <Route path={ROUTES.TERMS} element={<Terms />}/>
-        <Route path={ROUTES.GAME} element={<Game />}/>
-        <Route path={ROUTES.CUSTOMIZE} element={<Customize />}/>
-        <Route path={ROUTES.NOT_FOUND} element={<NotFound />}/>
-      </Routes>
-    </MyCardContext.Provider>
+    <div className="background-color">
+      <MyCardContext.Provider
+        value={{ cardColor, setCardColor, cardStyle, setCardStyle }}
+      >
+        <Navbar />
+        <Routes>
+          <Route path={ROUTES.HOME} element={<Welcome />} />
+          <Route path={ROUTES.ABOUT_US} element={<About />} />
+          <Route path={ROUTES.CHARTS} element={<Charts />} />
+          <Route path={ROUTES.TERMS} element={<Terms />} />
+          <Route path={ROUTES.GAME} element={<Game />} />
+          <Route path={ROUTES.CUSTOMIZE} element={<Customize />} />
+          <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
+        </Routes>
+      </MyCardContext.Provider>
+    </div>
   );
 };
 

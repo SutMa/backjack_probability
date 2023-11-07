@@ -1,6 +1,7 @@
 .term-text {
     font-size: 20px;
     width: 800px;
+    color: white;
 }
 
 .term-row {
@@ -16,4 +17,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: radial-gradient(rgb(51, 48, 48),#000000);
 }
