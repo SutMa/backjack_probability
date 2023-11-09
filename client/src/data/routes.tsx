@@ -1,7 +1,7 @@
 export const HOME = "/blackjack_probability";
-export const ABOUT_US = "/about-us";
-export const CHARTS = "/charts";
-export const TERMS = "/terms";
-export const GAME = "/game";
-export const CUSTOMIZE = "/customize";
+export const ABOUT_US = "/blackjack_probability/about-us";
+export const CHARTS = "/blackjack_probability/charts";
+export const TERMS = "/blackjack_probability/terms";
+export const GAME = "/blackjack_probability/game";
+export const CUSTOMIZE = "/blackjack_probability/customize";
 export const NOT_FOUND = "*";
