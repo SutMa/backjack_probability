@@ -3,7 +3,6 @@ import Status from "../../components/Status";
 import Hand from "../../components/Hand";
 import jsonData from "../../data/deck.json";
 import styles from "./Game.module.css";
-import { sum } from "lodash";
 
 const Game: React.FC = () => {
   enum GameState {
@@ -265,7 +264,7 @@ const Game: React.FC = () => {
         if (aces.length >= 2) {
           // allows us to count the extra card in the aces stack
           totalOfOtherCards -= 1;
-          aces.forEach((card: any) => {
+          aces.forEach(() => {
             totalOfOtherCards += 1;
           });
         }
