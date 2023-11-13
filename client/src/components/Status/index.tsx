@@ -12,7 +12,8 @@ type StatusProps = {
   hit: any;
   stand: any;
   resetGame: any;
-  toggleDisplaytotal: any;
+  displayTotal: boolean;
+  toggleDisplayTotal: any;
 };
 
 const Status: React.FC<StatusProps> = ({
@@ -24,7 +25,8 @@ const Status: React.FC<StatusProps> = ({
   hit,
   stand,
   resetGame,
-  toggleDisplaytotal,
+  displayTotal,
+  toggleDisplayTotal,
 }) => {
   return (
     <div className={styles.statusContainer}>
@@ -40,7 +42,8 @@ const Status: React.FC<StatusProps> = ({
           hitEvent={hit}
           standEvent={stand}
           resetEvent={resetGame}
-          toggleDisplayTotal={toggleDisplaytotal}
+          displayTotal={displayTotal}
+          toggleDisplayTotal={toggleDisplayTotal}
         ></Controls>
       </div>
     </div>

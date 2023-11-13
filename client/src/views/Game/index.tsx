@@ -3,7 +3,6 @@ import Status from "../../components/Status";
 import Hand from "../../components/Hand";
 import jsonData from "../../data/deck.json";
 import styles from "./Game.module.css";
-import Controls from "../../components/Controls";
 
 const Game: React.FC = () => {
   enum GameState {
@@ -47,6 +46,7 @@ const Game: React.FC = () => {
   const [userCards, setUserCards]: any[] = useState([]);
   const [userScore, setUserScore] = useState(0);
   const [userCount, setUserCount] = useState(0);
+
   const [displayTotal, setdisplayTotal] = useState(false);
 
   const [dealerCards, setDealerCards]: any[] = useState([]);
@@ -61,7 +61,6 @@ const Game: React.FC = () => {
     standDisabled: false,
     resetDisabled: true,
   });
-
 
   useEffect(() => {
     if (gameState === GameState.init) {
@@ -164,9 +163,9 @@ const Game: React.FC = () => {
     }
   };
 
-  const toggleDisplayTotal = () => {
-    setdisplayTotal(!displayTotal);
-  }
+  const toggleDisplayTotal = (val: any) => {
+    setdisplayTotal(val);
+  };
 
   const dealCard = (dealType: Deal, value: string, suit: string) => {
     switch (dealType) {
@@ -391,9 +390,6 @@ const Game: React.FC = () => {
       }
     }
 
-    console.log("User Score is: " + userScore);
-    console.log("Value Showing: " + valueShowing);
-
     // total is 12-16
     if (userScore === 12) {
       // if dealer has 4, 5, or 6 then stand
@@ -420,8 +416,6 @@ const Game: React.FC = () => {
       userScore === 15 ||
       userScore === 16
     ) {
-      console.log("User Score is: " + userScore);
-      console.log("Value Showing: " + valueShowing);
       // if dealer has 2-6 then stand
       if (
         valueShowing === 2 ||
@@ -501,16 +495,18 @@ const Game: React.FC = () => {
         hit={hit}
         stand={stand}
         resetGame={resetGame}
-        toggleDisplaytotal={toggleDisplayTotal}
-        
+        displayTotal={displayTotal}
+        toggleDisplayTotal={toggleDisplayTotal}
       />
-     
-      
       <div className={styles.handSection}>
-        <Hand title={`Dealer's Hand ${displayTotal ? `(${dealerScore})` : ''}`}
-          cards={dealerCards} />
-        <Hand title={`Your Hand ${displayTotal ? `(${userScore})` : ''}`}
-          cards={userCards} />
+        <Hand
+          title={`Dealer's Hand ${displayTotal ? `(${dealerScore})` : ""}`}
+          cards={dealerCards}
+        />
+        <Hand
+          title={`Your Hand ${displayTotal ? `(${userScore})` : ""}`}
+          cards={userCards}
+        />
       </div>
     </div>
   );
