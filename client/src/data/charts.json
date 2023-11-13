@@ -7,15 +7,15 @@
       },
       {
         "label": "9",
-        "value": ["H", "D", "D", "D", "D", "H", "H", "H", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "10",
-        "value": ["D", "D", "D", "D", "D", "D", "D", "D", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "11",
-        "value": ["D", "D", "D", "D", "D", "D", "D", "D", "D", "D"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "12",
@@ -45,31 +45,31 @@
     "data2": [
       {
         "label": "A/2",
-        "value": ["H", "H", "H", "D", "D", "H", "H", "H", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "A/3",
-        "value": ["H", "H", "H", "D", "D", "H", "H", "H", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "A/4",
-        "value": ["H", "H", "D", "D", "D", "H", "H", "H", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "A/5",
-        "value": ["H", "H", "D", "D", "D", "H", "H", "H", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "A/6",
-        "value": ["H", "D", "D", "D", "D", "H", "H", "H", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "H", "H", "H", "H", "H"]
       },
       {
         "label": "A/7",
-        "value": ["Ds", "Ds", "Ds", "Ds", "Ds", "S", "S", "H", "H", "H"]
+        "value": ["H", "H", "H", "H", "H", "S", "S", "H", "H", "H"]
       },
       {
         "label": "A/8",
-        "value": ["S", "S", "S", "S", "Ds", "S", "S", "S", "S", "S"]
+        "value": ["S", "S", "S", "S", "H", "S", "S", "S", "S", "S"]
       },
       {
         "label": "A/9",

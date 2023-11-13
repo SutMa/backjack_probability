@@ -3,6 +3,7 @@ import Status from "../../components/Status";
 import Hand from "../../components/Hand";
 import jsonData from "../../data/deck.json";
 import styles from "./Game.module.css";
+import { sum } from "lodash";
 
 const Game: React.FC = () => {
   enum GameState {
@@ -28,6 +29,17 @@ const Game: React.FC = () => {
     tie = "Tie!",
   }
 
+  enum Choice {
+    noChoice = "",
+    rightChoice = "That was the right choice!",
+    wrongChoice = "That was the wrong choice :(",
+  }
+
+  enum UserChoseTo {
+    hit = "hit",
+    stand = "stand",
+  }
+
   const data = JSON.parse(JSON.stringify(jsonData.cards));
   const [deck, setDeck]: any[] = useState(data);
 
@@ -41,6 +53,7 @@ const Game: React.FC = () => {
 
   const [gameState, setGameState] = useState(GameState.bet);
   const [message, setMessage] = useState(Message.bet);
+  const [choice, setChoice] = useState(Choice.noChoice);
   const [buttonState, setButtonState] = useState({
     hitDisabled: false,
     standDisabled: false,
@@ -55,6 +68,7 @@ const Game: React.FC = () => {
       drawCard(Deal.dealer);
       setGameState(GameState.userTurn);
       setMessage(Message.hitStand);
+      setChoice(Choice.noChoice);
     }
   }, [gameState]);
 
@@ -111,6 +125,7 @@ const Game: React.FC = () => {
 
     setGameState(GameState.bet);
     setMessage(Message.bet);
+    setChoice(Choice.noChoice);
     setButtonState({
       hitDisabled: false,
       standDisabled: false,
@@ -216,11 +231,224 @@ const Game: React.FC = () => {
     setScore(total);
   };
 
+  const determineChoice = (userChoseTo: UserChoseTo) => {
+    // check if total is 11 or below; if so then hit
+    if (userScore <= 11 && userChoseTo == UserChoseTo.hit) {
+      setChoice(Choice.rightChoice);
+      return;
+    } else if (userScore <= 11 && userChoseTo == UserChoseTo.stand) {
+      setChoice(Choice.wrongChoice);
+      return;
+    }
+
+    // if there is an ace, follow new ruleset
+    // if ace and 6 or below, then hit; else if ace and 9 or above then stand
+    if (userCards.length <= 2) {
+      const aces = userCards.filter((card: any) => {
+        return card.value === "A";
+      });
+      const otherCards = userCards.filter((card: any) => {
+        return card.value != "A";
+      });
+
+      if (aces.length >= 1) {
+        let totalOfOtherCards = 0;
+        otherCards.forEach((card: any) => {
+          if (card.value == ("K" || "Q" || "J")) {
+            totalOfOtherCards += 10;
+          } else {
+            totalOfOtherCards += parseInt(card.value);
+          }
+        });
+
+        // checks if there are other aces to add to the total count
+        if (aces.length >= 2) {
+          // allows us to count the extra card in the aces stack
+          totalOfOtherCards -= 1;
+          aces.forEach((card: any) => {
+            totalOfOtherCards += 1;
+          });
+        }
+
+        if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.hit) {
+          setChoice(Choice.rightChoice);
+          return;
+        } else if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.stand) {
+          setChoice(Choice.wrongChoice);
+          return;
+        } else if (
+          totalOfOtherCards >= 9 &&
+          totalOfOtherCards <= 10 &&
+          userChoseTo == UserChoseTo.hit
+        ) {
+          setChoice(Choice.wrongChoice);
+          return;
+        } else if (
+          totalOfOtherCards >= 9 &&
+          totalOfOtherCards <= 10 &&
+          userChoseTo == UserChoseTo.stand
+        ) {
+          setChoice(Choice.rightChoice);
+          return;
+        }
+      }
+    }
+
+    // otherwise, if 17 or above then stand
+    if (userScore >= 17 && userChoseTo == UserChoseTo.hit) {
+      setChoice(Choice.wrongChoice);
+      return;
+    } else if (userScore >= 17 && userChoseTo == UserChoseTo.stand) {
+      setChoice(Choice.rightChoice);
+      return;
+    }
+
+    // determine value dealer is showing
+    let valueShowing = 0;
+    dealerCards.forEach((card: any) => {
+      if (card.hidden === false) {
+        if (card.value === "A") {
+          valueShowing = 11;
+        } else if (card.value === ("K" || "Q" || "J")) {
+          valueShowing = 10;
+        } else {
+          valueShowing = parseInt(card.value);
+        }
+      }
+    });
+
+    // user has an A/7 or A/8
+    const aces = userCards.filter((card: any) => {
+      return card.value === "A";
+    });
+
+    if (aces.length >= 1) {
+      let sumOfUserCards = 0;
+      userCards.forEach((card: any) => {
+        if (card.value != "A") {
+          if (card.value === ("K" || "Q" || "J")) {
+            sumOfUserCards += 10;
+          } else {
+            sumOfUserCards += parseInt(card.value);
+          }
+        }
+      });
+
+      if (sumOfUserCards === 7) {
+        if (valueShowing == 7 || valueShowing === 8) {
+          if (userChoseTo === UserChoseTo.hit) {
+            setChoice(Choice.wrongChoice);
+            return;
+          } else if (userChoseTo === UserChoseTo.stand) {
+            setChoice(Choice.rightChoice);
+            return;
+          }
+        } else {
+          if (userChoseTo === UserChoseTo.hit) {
+            setChoice(Choice.rightChoice);
+            return;
+          } else if (userChoseTo === UserChoseTo.stand) {
+            setChoice(Choice.wrongChoice);
+            return;
+          }
+        }
+      } else if (sumOfUserCards === 8) {
+        if (
+          valueShowing == 2 ||
+          valueShowing === 3 ||
+          valueShowing === 4 ||
+          valueShowing === 5 ||
+          valueShowing === 6 ||
+          valueShowing === 7 ||
+          valueShowing === 8 ||
+          valueShowing === 9 ||
+          valueShowing === 10 ||
+          valueShowing === 11
+        ) {
+          if (userChoseTo === UserChoseTo.hit) {
+            setChoice(Choice.wrongChoice);
+            return;
+          } else if (userChoseTo === UserChoseTo.stand) {
+            setChoice(Choice.rightChoice);
+            return;
+          }
+        } else {
+          if (userChoseTo === UserChoseTo.hit) {
+            setChoice(Choice.rightChoice);
+            return;
+          } else if (userChoseTo === UserChoseTo.stand) {
+            setChoice(Choice.wrongChoice);
+            return;
+          }
+        }
+      }
+    }
+
+    console.log("User Score is: " + userScore);
+    console.log("Value Showing: " + valueShowing);
+
+    // total is 12-16
+    if (userScore === 12) {
+      // if dealer has 4, 5, or 6 then stand
+      if (valueShowing === 4 || valueShowing === 5 || valueShowing === 6) {
+        if (userChoseTo === UserChoseTo.hit) {
+          setChoice(Choice.wrongChoice);
+          return;
+        } else if (userChoseTo === UserChoseTo.stand) {
+          setChoice(Choice.rightChoice);
+          return;
+        }
+      } else {
+        if (userChoseTo === UserChoseTo.hit) {
+          setChoice(Choice.rightChoice);
+          return;
+        } else if (userChoseTo === UserChoseTo.stand) {
+          setChoice(Choice.wrongChoice);
+          return;
+        }
+      }
+    } else if (
+      userScore === 13 ||
+      userScore === 14 ||
+      userScore === 15 ||
+      userScore === 16
+    ) {
+      console.log("User Score is: " + userScore);
+      console.log("Value Showing: " + valueShowing);
+      // if dealer has 2-6 then stand
+      if (
+        valueShowing === 2 ||
+        valueShowing === 3 ||
+        valueShowing === 4 ||
+        valueShowing === 5 ||
+        valueShowing === 6
+      ) {
+        if (userChoseTo === UserChoseTo.hit) {
+          setChoice(Choice.wrongChoice);
+          return;
+        } else if (userChoseTo === UserChoseTo.stand) {
+          setChoice(Choice.rightChoice);
+          return;
+        }
+      } else {
+        if (userChoseTo === UserChoseTo.hit) {
+          setChoice(Choice.rightChoice);
+          return;
+        } else if (userChoseTo === UserChoseTo.stand) {
+          setChoice(Choice.wrongChoice);
+          return;
+        }
+      }
+    }
+  };
+
   const hit = () => {
+    determineChoice(UserChoseTo.hit);
     drawCard(Deal.user);
   };
 
   const stand = () => {
+    determineChoice(UserChoseTo.stand);
     buttonState.hitDisabled = true;
     buttonState.standDisabled = true;
     buttonState.resetDisabled = false;
@@ -259,6 +487,7 @@ const Game: React.FC = () => {
     <div className={styles.gameBackground}>
       <Status
         message={message}
+        choice={choice}
         gameState={gameState}
         buttonState={buttonState}
         playGame={playGame}

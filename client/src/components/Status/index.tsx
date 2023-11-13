@@ -4,6 +4,7 @@ import Controls from "../Controls";
 
 type StatusProps = {
   message: string;
+  choice: string;
   gameState: number;
   buttonState: any;
   playGame: any;
@@ -14,6 +15,7 @@ type StatusProps = {
 
 const Status: React.FC<StatusProps> = ({
   message,
+  choice,
   gameState,
   buttonState,
   playGame,
@@ -24,7 +26,10 @@ const Status: React.FC<StatusProps> = ({
   return (
     <div className={styles.statusContainer}>
       <div className={styles.status}>
-        <h1 className={styles.value}>{message}</h1>
+        <div>
+          <h1 className={styles.value}>{message}</h1>
+          <h1 className={styles.value}>{choice}</h1>
+        </div>
         <Controls
           gameState={gameState}
           buttonState={buttonState}
