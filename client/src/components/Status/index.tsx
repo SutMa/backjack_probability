@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Status.module.css";
 import Controls from "../Controls";
 
+
 type StatusProps = {
   message: string;
   choice: string;
@@ -11,6 +12,7 @@ type StatusProps = {
   hit: any;
   stand: any;
   resetGame: any;
+  toggleDisplaytotal: any;
 };
 
 const Status: React.FC<StatusProps> = ({
@@ -22,6 +24,7 @@ const Status: React.FC<StatusProps> = ({
   hit,
   stand,
   resetGame,
+  toggleDisplaytotal,
 }) => {
   return (
     <div className={styles.statusContainer}>
@@ -37,6 +40,7 @@ const Status: React.FC<StatusProps> = ({
           hitEvent={hit}
           standEvent={stand}
           resetEvent={resetGame}
+          toggleDisplayTotal={toggleDisplaytotal}
         ></Controls>
       </div>
     </div>
