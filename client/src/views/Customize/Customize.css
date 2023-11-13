@@ -44,3 +44,9 @@
     color: white;
     margin: 10px;
 }
+
+button{
+    border-radius: 10px;
+    border: 10px;
+    box-shadow: 10px;
+}
