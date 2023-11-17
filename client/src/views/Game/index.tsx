@@ -240,18 +240,16 @@ const Game: React.FC = () => {
   };
 
   const determineChoice = (userChoseTo: UserChoseTo) => {
-    // check if total is 11 or below; if so then hit
     if (userScore <= 11) {
+      // check if total is 11 or below; if so then hit
       if (userChoseTo == UserChoseTo.hit) {
         setChoice(Choice.underElevenHit);
       } else if (userChoseTo == UserChoseTo.stand) {
         setChoice(Choice.underElevenStand);
       }
-    }
-
-    // if there is an ace, follow new ruleset
-    // if ace and 6 or below, then hit; else if ace and 9 or above then stand
-    else if (userCards.length <= 2) {
+    } else if (userCards.length <= 2 && userCards.filter((card: any) => { return card.value === "A"; }).length >= 1) {
+      // if there is an ace, follow new ruleset
+      // if ace and 6 or below, then hit; else if ace and 9 or above then stand
       const aces = userCards.filter((card: any) => {
         return card.value === "A";
       });
@@ -296,33 +294,15 @@ const Game: React.FC = () => {
           setChoice(Choice.rightChoice);
         }
       }
-    }
-
-    // otherwise, if 17 or above then stand
-    else if (userScore >= 17) {
+    } else if (userScore >= 17) {
+      // otherwise, if 17 or above then stand
       if (userChoseTo == UserChoseTo.hit) {
         setChoice(Choice.wrongChoice);
       } else if (userChoseTo == UserChoseTo.stand) {
         setChoice(Choice.rightChoice);
       }
-    }
-
-    // edge cases
-    else {
-      // determine value dealer is showing
-      let valueShowing = 0;
-      dealerCards.forEach((card: any) => {
-        if (card.hidden === false) {
-          if (card.value === "A") {
-            valueShowing = 11;
-          } else if (card.value === ("K" || "Q" || "J")) {
-            valueShowing = 10;
-          } else {
-            valueShowing = parseInt(card.value);
-          }
-        }
-      });
-
+    } else {
+      // edge cases
       // user has an A/7 or A/8
       const aces = userCards.filter((card: any) => {
         return card.value === "A";
@@ -341,7 +321,7 @@ const Game: React.FC = () => {
         });
 
         if (sumOfUserCards === 7) {
-          if (valueShowing == 7 || valueShowing === 8) {
+          if (dealerScore == 7 || dealerScore === 8) {
             if (userChoseTo === UserChoseTo.hit) {
               setChoice(Choice.wrongChoice);
             } else if (userChoseTo === UserChoseTo.stand) {
@@ -356,16 +336,16 @@ const Game: React.FC = () => {
           }
         } else if (sumOfUserCards === 8) {
           if (
-            valueShowing == 2 ||
-            valueShowing === 3 ||
-            valueShowing === 4 ||
-            valueShowing === 5 ||
-            valueShowing === 6 ||
-            valueShowing === 7 ||
-            valueShowing === 8 ||
-            valueShowing === 9 ||
-            valueShowing === 10 ||
-            valueShowing === 11
+            dealerScore == 2 ||
+            dealerScore === 3 ||
+            dealerScore === 4 ||
+            dealerScore === 5 ||
+            dealerScore === 6 ||
+            dealerScore === 7 ||
+            dealerScore === 8 ||
+            dealerScore === 9 ||
+            dealerScore === 10 ||
+            dealerScore === 11
           ) {
             if (userChoseTo === UserChoseTo.hit) {
               setChoice(Choice.wrongChoice);
@@ -385,7 +365,7 @@ const Game: React.FC = () => {
       // total is 12-16
       else if (userScore === 12) {
         // if dealer has 4, 5, or 6 then stand
-        if (valueShowing === 4 || valueShowing === 5 || valueShowing === 6) {
+        if (dealerScore === 4 || dealerScore === 5 || dealerScore === 6) {
           if (userChoseTo === UserChoseTo.hit) {
             setChoice(Choice.wrongChoice);
           } else if (userChoseTo === UserChoseTo.stand) {
@@ -406,11 +386,11 @@ const Game: React.FC = () => {
       ) {
         // if dealer has 2-6 then stand
         if (
-          valueShowing === 2 ||
-          valueShowing === 3 ||
-          valueShowing === 4 ||
-          valueShowing === 5 ||
-          valueShowing === 6
+          dealerScore === 2 ||
+          dealerScore === 3 ||
+          dealerScore === 4 ||
+          dealerScore === 5 ||
+          dealerScore === 6
         ) {
           if (userChoseTo === UserChoseTo.hit) {
             setChoice(Choice.wrongChoice);
