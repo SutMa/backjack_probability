@@ -241,7 +241,7 @@ const Game: React.FC = () => {
 
   const determineChoice = (userChoseTo: UserChoseTo) => {
     // check if total is 11 or below; if so then hit
-    if (userScore <= 11 && userChoseTo == UserChoseTo.hit) {
+    if (userScore <= 11) {
       if (userChoseTo == UserChoseTo.hit) {
         setChoice(Choice.underElevenHit);
       } else if (userChoseTo == UserChoseTo.stand) {
@@ -299,12 +299,14 @@ const Game: React.FC = () => {
     }
 
     // otherwise, if 17 or above then stand
-    else if (userScore >= 17 && userChoseTo == UserChoseTo.hit) {
-      setChoice(Choice.wrongChoice);
-    } else if (userScore >= 17 && userChoseTo == UserChoseTo.stand) {
-      setChoice(Choice.rightChoice);
+    else if (userScore >= 17) {
+      if (userChoseTo == UserChoseTo.hit) {
+        setChoice(Choice.wrongChoice);
+      } else if (userChoseTo == UserChoseTo.stand) {
+        setChoice(Choice.rightChoice);
+      }
     }
-    
+
     // edge cases
     else {
       // determine value dealer is showing
