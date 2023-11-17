@@ -10,7 +10,9 @@ type ControlsProps = {
   standEvent: any;
   resetEvent: any;
   displayTotal: boolean;
+  dealerHelp: boolean;
   toggleDisplayTotal: any;
+  toggleDealerHelp: any;
 };
 
 const Controls: React.FC<ControlsProps> = ({
@@ -21,14 +23,20 @@ const Controls: React.FC<ControlsProps> = ({
   standEvent,
   resetEvent,
   displayTotal,
+  dealerHelp,
   toggleDisplayTotal,
+  toggleDealerHelp,
 }) => {
   const onBetClick = () => {
     playEvent();
   };
 
-  const toggleScore = (val: any) => {
+  const toggleScore = (val: boolean) => {
     toggleDisplayTotal(val);
+  };
+
+  const toggleHelp = (val: boolean) => {
+    toggleDealerHelp(val);
   };
 
   const getControls = () => {
@@ -44,9 +52,13 @@ const Controls: React.FC<ControlsProps> = ({
       return (
         <div className={styles.controlsContainer}>
           <div className={styles.column}>
-            <div className={styles.totalContainer}>
-              <h2 className={styles.totalText}>Toggle Total</h2>
+            <div className={styles.toggleContainer}>
+              <h2 className={styles.toggleText}>Toggle Total</h2>
               <ReactSwitch checked={displayTotal} onChange={toggleScore} />
+            </div>
+            <div className={styles.toggleContainer}>
+              <h2 className={styles.toggleText}>Toggle Help</h2>
+              <ReactSwitch checked={dealerHelp} onChange={toggleHelp} />
             </div>
             <div className={styles.row}>
               <button
@@ -68,7 +80,7 @@ const Controls: React.FC<ControlsProps> = ({
                 disabled={buttonState.resetDisabled}
                 className={styles.button}
               >
-                Reset
+                New Hand
               </button>
             </div>
           </div>

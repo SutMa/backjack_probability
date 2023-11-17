@@ -1,7 +1,5 @@
 .gameBackground {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: darkgreen;
+    background:  radial-gradient(rgb(1, 131, 1),rgb(1, 70, 1)) !important;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
