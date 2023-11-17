@@ -30,8 +30,10 @@ const Game: React.FC = () => {
 
   enum Choice {
     noChoice = "",
-    rightChoice = "That was the right choice!",
-    wrongChoice = "That was the wrong choice :(",
+    underElevenHit = "That was the correct choice! In this scenario, you cannot bust so it is better to hit!",
+    underElevenStand = "That was the wrong choice. In this scenario, you cannot bust so it is better to hit!",
+    rightChoice = "Filler",
+    wrongChoice = "Filler2",
   }
 
   enum UserChoseTo {
@@ -240,16 +242,16 @@ const Game: React.FC = () => {
   const determineChoice = (userChoseTo: UserChoseTo) => {
     // check if total is 11 or below; if so then hit
     if (userScore <= 11 && userChoseTo == UserChoseTo.hit) {
-      setChoice(Choice.rightChoice);
-      return;
-    } else if (userScore <= 11 && userChoseTo == UserChoseTo.stand) {
-      setChoice(Choice.wrongChoice);
-      return;
+      if (userChoseTo == UserChoseTo.hit) {
+        setChoice(Choice.underElevenHit);
+      } else if (userChoseTo == UserChoseTo.stand) {
+        setChoice(Choice.underElevenStand);
+      }
     }
 
     // if there is an ace, follow new ruleset
     // if ace and 6 or below, then hit; else if ace and 9 or above then stand
-    if (userCards.length <= 2) {
+    else if (userCards.length <= 2) {
       const aces = userCards.filter((card: any) => {
         return card.value === "A";
       });
@@ -278,166 +280,147 @@ const Game: React.FC = () => {
 
         if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.hit) {
           setChoice(Choice.rightChoice);
-          return;
         } else if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.stand) {
           setChoice(Choice.wrongChoice);
-          return;
         } else if (
           totalOfOtherCards >= 9 &&
           totalOfOtherCards <= 10 &&
           userChoseTo == UserChoseTo.hit
         ) {
           setChoice(Choice.wrongChoice);
-          return;
         } else if (
           totalOfOtherCards >= 9 &&
           totalOfOtherCards <= 10 &&
           userChoseTo == UserChoseTo.stand
         ) {
           setChoice(Choice.rightChoice);
-          return;
         }
       }
     }
 
     // otherwise, if 17 or above then stand
-    if (userScore >= 17 && userChoseTo == UserChoseTo.hit) {
+    else if (userScore >= 17 && userChoseTo == UserChoseTo.hit) {
       setChoice(Choice.wrongChoice);
-      return;
     } else if (userScore >= 17 && userChoseTo == UserChoseTo.stand) {
       setChoice(Choice.rightChoice);
-      return;
     }
-
-    // determine value dealer is showing
-    let valueShowing = 0;
-    dealerCards.forEach((card: any) => {
-      if (card.hidden === false) {
-        if (card.value === "A") {
-          valueShowing = 11;
-        } else if (card.value === ("K" || "Q" || "J")) {
-          valueShowing = 10;
-        } else {
-          valueShowing = parseInt(card.value);
-        }
-      }
-    });
-
-    // user has an A/7 or A/8
-    const aces = userCards.filter((card: any) => {
-      return card.value === "A";
-    });
-
-    if (aces.length >= 1) {
-      let sumOfUserCards = 0;
-      userCards.forEach((card: any) => {
-        if (card.value != "A") {
-          if (card.value === ("K" || "Q" || "J")) {
-            sumOfUserCards += 10;
+    
+    // edge cases
+    else {
+      // determine value dealer is showing
+      let valueShowing = 0;
+      dealerCards.forEach((card: any) => {
+        if (card.hidden === false) {
+          if (card.value === "A") {
+            valueShowing = 11;
+          } else if (card.value === ("K" || "Q" || "J")) {
+            valueShowing = 10;
           } else {
-            sumOfUserCards += parseInt(card.value);
+            valueShowing = parseInt(card.value);
           }
         }
       });
 
-      if (sumOfUserCards === 7) {
-        if (valueShowing == 7 || valueShowing === 8) {
+      // user has an A/7 or A/8
+      const aces = userCards.filter((card: any) => {
+        return card.value === "A";
+      });
+
+      if (aces.length >= 1) {
+        let sumOfUserCards = 0;
+        userCards.forEach((card: any) => {
+          if (card.value != "A") {
+            if (card.value === ("K" || "Q" || "J")) {
+              sumOfUserCards += 10;
+            } else {
+              sumOfUserCards += parseInt(card.value);
+            }
+          }
+        });
+
+        if (sumOfUserCards === 7) {
+          if (valueShowing == 7 || valueShowing === 8) {
+            if (userChoseTo === UserChoseTo.hit) {
+              setChoice(Choice.wrongChoice);
+            } else if (userChoseTo === UserChoseTo.stand) {
+              setChoice(Choice.rightChoice);
+            }
+          } else {
+            if (userChoseTo === UserChoseTo.hit) {
+              setChoice(Choice.rightChoice);
+            } else if (userChoseTo === UserChoseTo.stand) {
+              setChoice(Choice.wrongChoice);
+            }
+          }
+        } else if (sumOfUserCards === 8) {
+          if (
+            valueShowing == 2 ||
+            valueShowing === 3 ||
+            valueShowing === 4 ||
+            valueShowing === 5 ||
+            valueShowing === 6 ||
+            valueShowing === 7 ||
+            valueShowing === 8 ||
+            valueShowing === 9 ||
+            valueShowing === 10 ||
+            valueShowing === 11
+          ) {
+            if (userChoseTo === UserChoseTo.hit) {
+              setChoice(Choice.wrongChoice);
+            } else if (userChoseTo === UserChoseTo.stand) {
+              setChoice(Choice.rightChoice);
+            }
+          } else {
+            if (userChoseTo === UserChoseTo.hit) {
+              setChoice(Choice.rightChoice);
+            } else if (userChoseTo === UserChoseTo.stand) {
+              setChoice(Choice.wrongChoice);
+            }
+          }
+        }
+      }
+
+      // total is 12-16
+      else if (userScore === 12) {
+        // if dealer has 4, 5, or 6 then stand
+        if (valueShowing === 4 || valueShowing === 5 || valueShowing === 6) {
           if (userChoseTo === UserChoseTo.hit) {
             setChoice(Choice.wrongChoice);
-            return;
           } else if (userChoseTo === UserChoseTo.stand) {
             setChoice(Choice.rightChoice);
-            return;
           }
         } else {
           if (userChoseTo === UserChoseTo.hit) {
             setChoice(Choice.rightChoice);
-            return;
           } else if (userChoseTo === UserChoseTo.stand) {
             setChoice(Choice.wrongChoice);
-            return;
           }
         }
-      } else if (sumOfUserCards === 8) {
+      } else if (
+        userScore === 13 ||
+        userScore === 14 ||
+        userScore === 15 ||
+        userScore === 16
+      ) {
+        // if dealer has 2-6 then stand
         if (
-          valueShowing == 2 ||
+          valueShowing === 2 ||
           valueShowing === 3 ||
           valueShowing === 4 ||
           valueShowing === 5 ||
-          valueShowing === 6 ||
-          valueShowing === 7 ||
-          valueShowing === 8 ||
-          valueShowing === 9 ||
-          valueShowing === 10 ||
-          valueShowing === 11
+          valueShowing === 6
         ) {
           if (userChoseTo === UserChoseTo.hit) {
             setChoice(Choice.wrongChoice);
-            return;
           } else if (userChoseTo === UserChoseTo.stand) {
             setChoice(Choice.rightChoice);
-            return;
           }
         } else {
           if (userChoseTo === UserChoseTo.hit) {
             setChoice(Choice.rightChoice);
-            return;
           } else if (userChoseTo === UserChoseTo.stand) {
             setChoice(Choice.wrongChoice);
-            return;
           }
-        }
-      }
-    }
-
-    // total is 12-16
-    if (userScore === 12) {
-      // if dealer has 4, 5, or 6 then stand
-      if (valueShowing === 4 || valueShowing === 5 || valueShowing === 6) {
-        if (userChoseTo === UserChoseTo.hit) {
-          setChoice(Choice.wrongChoice);
-          return;
-        } else if (userChoseTo === UserChoseTo.stand) {
-          setChoice(Choice.rightChoice);
-          return;
-        }
-      } else {
-        if (userChoseTo === UserChoseTo.hit) {
-          setChoice(Choice.rightChoice);
-          return;
-        } else if (userChoseTo === UserChoseTo.stand) {
-          setChoice(Choice.wrongChoice);
-          return;
-        }
-      }
-    } else if (
-      userScore === 13 ||
-      userScore === 14 ||
-      userScore === 15 ||
-      userScore === 16
-    ) {
-      // if dealer has 2-6 then stand
-      if (
-        valueShowing === 2 ||
-        valueShowing === 3 ||
-        valueShowing === 4 ||
-        valueShowing === 5 ||
-        valueShowing === 6
-      ) {
-        if (userChoseTo === UserChoseTo.hit) {
-          setChoice(Choice.wrongChoice);
-          return;
-        } else if (userChoseTo === UserChoseTo.stand) {
-          setChoice(Choice.rightChoice);
-          return;
-        }
-      } else {
-        if (userChoseTo === UserChoseTo.hit) {
-          setChoice(Choice.rightChoice);
-          return;
-        } else if (userChoseTo === UserChoseTo.stand) {
-          setChoice(Choice.wrongChoice);
-          return;
         }
       }
     }
