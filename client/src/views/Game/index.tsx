@@ -271,8 +271,6 @@ const Game: React.FC = () => {
       }
     };
 
-    console.log("Users total:" + userScore);
-
     if (userScore <= 11) {
       // check if total is 11 or below; if so then hit
       setMessages(Choice.underElevenHit, Choice.underElevenStand, DealerMessage.hitMessage);

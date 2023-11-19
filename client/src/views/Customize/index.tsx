@@ -26,7 +26,7 @@ const Customize = () => {
       <Card value="A" suit="spade" hidden={true} />
       <div className="buttonsContainer">
         <div className="buttonGroup">
-          <h1>Base</h1>
+          <h1 className="buttonLabel">Base</h1>
           <button
             className={getStyle(CardColor.RED, CardStyle.BASE)}
             onClick={() => selectStyle(CardColor.RED, CardStyle.BASE)}
@@ -47,7 +47,7 @@ const Customize = () => {
           </button>
         </div>
         <div className="buttonGroup">
-          <h1>Gradient</h1>
+          <h1 className="buttonLabel">Gradient</h1>
           <button className={getStyle(CardColor.RED, CardStyle.GRADIENT)}
             onClick={() => selectStyle(CardColor.RED, CardStyle.GRADIENT)}>
             Red
