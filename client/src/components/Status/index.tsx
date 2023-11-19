@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Status.module.css";
 import Controls from "../Controls";
-
+import DealerAdvice from "../DealerAdvice";
 
 type StatusProps = {
   message: string;
@@ -13,7 +13,10 @@ type StatusProps = {
   stand: any;
   resetGame: any;
   displayTotal: boolean;
+  dealerHelp: boolean;
+  dealerMessage: string;
   toggleDisplayTotal: any;
+  toggleDealerHelp: any;
 };
 
 const Status: React.FC<StatusProps> = ({
@@ -26,10 +29,14 @@ const Status: React.FC<StatusProps> = ({
   stand,
   resetGame,
   displayTotal,
+  dealerHelp,
+  dealerMessage,
   toggleDisplayTotal,
+  toggleDealerHelp,
 }) => {
   return (
     <div className={styles.statusContainer}>
+      {dealerHelp && <DealerAdvice message={dealerMessage} />}
       <div className={styles.status}>
         <div>
           <h1 className={styles.value}>{message}</h1>
@@ -43,7 +50,9 @@ const Status: React.FC<StatusProps> = ({
           standEvent={stand}
           resetEvent={resetGame}
           displayTotal={displayTotal}
+          dealerHelp={dealerHelp}
           toggleDisplayTotal={toggleDisplayTotal}
+          toggleDealerHelp={toggleDealerHelp}
         ></Controls>
       </div>
     </div>

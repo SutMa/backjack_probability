@@ -1,5 +1,5 @@
-import Wireframe from "../../assets/images/Wireframe.svg";
-import CardFan2 from "../../assets/images/CardFan2.svg";
+import AboutUs1 from "../../assets/images/AboutUs1.png";
+import AboutUs2 from "../../assets/images/AboutUs2.png";
 import "./About.css";
 
 const About = () => {
@@ -18,10 +18,10 @@ const About = () => {
               </p>
             </div>
           </div>
-          <img src={Wireframe} />
+          <img src={AboutUs1} />
         </div>
         <div className="about-row">
-          <img src={CardFan2} />
+          <img src={AboutUs2} />
           <div className="column">
             <div className="text-holder">
               <h1 className="about-header">

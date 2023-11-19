@@ -14,9 +14,12 @@
 
 .image {
     height: 300px;
+    width: 400px;
 }
 
 .titleText {
+    width: 50vw;
     font-size: 40px;
     color: white;
+    text-align: center;
 }

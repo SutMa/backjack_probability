@@ -1,5 +1,5 @@
 import './NotFound.css';
-import Error from '../../assets/images/404Error.svg';
+import Error from '../../assets/images/404Error.png';
 
 const NotFound = () => {
     return (

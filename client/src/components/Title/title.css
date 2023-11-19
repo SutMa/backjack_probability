@@ -29,6 +29,9 @@
     padding: 20px;
     color: white;
     text-align: center;
+    -webkit-text-stroke: 1;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
 }
 
 .btn-hover {

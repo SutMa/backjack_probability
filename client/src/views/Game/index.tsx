@@ -40,6 +40,13 @@ const Game: React.FC = () => {
     hit = "hit",
     stand = "stand",
     total = "total",
+    ignore = "ignore",
+  }
+
+  enum DealerMessage {
+    noMessage = "I have no advice.",
+    hitMessage = "I suggest you hit.",
+    standMessage = "I suggest you stand.",
   }
 
   const data = JSON.parse(JSON.stringify(jsonData.cards));
@@ -50,6 +57,7 @@ const Game: React.FC = () => {
   const [userCount, setUserCount] = useState(0);
 
   const [displayTotal, setdisplayTotal] = useState(false);
+  const [dealerHelp, setDealerHelp] = useState(false);
 
   const [dealerCards, setDealerCards]: any[] = useState([]);
   const [dealerScore, setDealerScore] = useState(0);
@@ -58,6 +66,7 @@ const Game: React.FC = () => {
   const [gameState, setGameState] = useState(GameState.bet);
   const [message, setMessage] = useState(Message.bet);
   const [choice, setChoice] = useState(Choice.noChoice);
+  const [dealerMessage, setDealerMessage] = useState(DealerMessage.noMessage);
   const [buttonState, setButtonState] = useState({
     hitDisabled: false,
     standDisabled: false,
@@ -111,6 +120,14 @@ const Game: React.FC = () => {
     }
   }, [dealerCount]);
 
+  useEffect(() => {
+    if (userScore <= 21) {
+      determineChoice(UserChoseTo.ignore);
+    } else {
+      setDealerMessage(DealerMessage.noMessage);
+    }
+  }, [userScore]);
+
   const playGame = () => {
     setGameState(GameState.init);
   };
@@ -127,7 +144,7 @@ const Game: React.FC = () => {
     setDealerScore(0);
     setDealerCount(0);
 
-    setGameState(GameState.bet);
+    setGameState(GameState.init);
     setMessage(Message.bet);
     setChoice(Choice.noChoice);
     setButtonState({
@@ -165,8 +182,12 @@ const Game: React.FC = () => {
     }
   };
 
-  const toggleDisplayTotal = (val: any) => {
+  const toggleDisplayTotal = (val: boolean) => {
     setdisplayTotal(val);
+  };
+
+  const toggleDealerHelp = (val: boolean) => {
+    setDealerHelp(val);
   };
 
   const dealCard = (dealType: Deal, value: string, suit: string) => {
@@ -240,14 +261,25 @@ const Game: React.FC = () => {
   };
 
   const determineChoice = (userChoseTo: UserChoseTo) => {
+    const setMessages = (hitMessage: Choice, standMessage: Choice, newMessage: DealerMessage) => {
+      if (userChoseTo === UserChoseTo.hit) {
+        setChoice(hitMessage);
+      } else if (userChoseTo === UserChoseTo.stand) {
+        setChoice(standMessage);
+      } else if (userChoseTo == UserChoseTo.ignore) {
+        setDealerMessage(newMessage);
+      }
+    };
+
     if (userScore <= 11) {
       // check if total is 11 or below; if so then hit
-      if (userChoseTo == UserChoseTo.hit) {
-        setChoice(Choice.underElevenHit);
-      } else if (userChoseTo == UserChoseTo.stand) {
-        setChoice(Choice.underElevenStand);
-      }
-    } else if (userCards.length <= 2 && userCards.filter((card: any) => { return card.value === "A"; }).length >= 1) {
+      setMessages(Choice.underElevenHit, Choice.underElevenStand, DealerMessage.hitMessage);
+    } else if (
+      userCards.length <= 2 &&
+      userCards.filter((card: any) => {
+        return card.value === "A";
+      }).length >= 1
+    ) {
       // if there is an ace, follow new ruleset
       // if ace and 6 or below, then hit; else if ace and 9 or above then stand
       const aces = userCards.filter((card: any) => {
@@ -276,31 +308,19 @@ const Game: React.FC = () => {
           });
         }
 
-        if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.hit) {
-          setChoice(Choice.rightChoice);
-        } else if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.stand) {
-          setChoice(Choice.wrongChoice);
+        if (totalOfOtherCards <= 6) {
+          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
         } else if (
           totalOfOtherCards >= 9 &&
           totalOfOtherCards <= 10 &&
           userChoseTo == UserChoseTo.hit
         ) {
-          setChoice(Choice.wrongChoice);
-        } else if (
-          totalOfOtherCards >= 9 &&
-          totalOfOtherCards <= 10 &&
-          userChoseTo == UserChoseTo.stand
-        ) {
-          setChoice(Choice.rightChoice);
+          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
         }
       }
     } else if (userScore >= 17) {
       // otherwise, if 17 or above then stand
-      if (userChoseTo == UserChoseTo.hit) {
-        setChoice(Choice.wrongChoice);
-      } else if (userChoseTo == UserChoseTo.stand) {
-        setChoice(Choice.rightChoice);
-      }
+      setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
     } else {
       // edge cases
       // user has an A/7 or A/8
@@ -322,17 +342,9 @@ const Game: React.FC = () => {
 
         if (sumOfUserCards === 7) {
           if (dealerScore == 7 || dealerScore === 8) {
-            if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.wrongChoice);
-            } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.rightChoice);
-            }
+            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
           } else {
-            if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.rightChoice);
-            } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.wrongChoice);
-            }
+            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
           }
         } else if (sumOfUserCards === 8) {
           if (
@@ -340,24 +352,15 @@ const Game: React.FC = () => {
             dealerScore === 3 ||
             dealerScore === 4 ||
             dealerScore === 5 ||
-            dealerScore === 6 ||
             dealerScore === 7 ||
             dealerScore === 8 ||
             dealerScore === 9 ||
             dealerScore === 10 ||
             dealerScore === 11
           ) {
-            if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.wrongChoice);
-            } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.rightChoice);
-            }
+            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
           } else {
-            if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.rightChoice);
-            } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.wrongChoice);
-            }
+            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
           }
         }
       }
@@ -366,17 +369,9 @@ const Game: React.FC = () => {
       else if (userScore === 12) {
         // if dealer has 4, 5, or 6 then stand
         if (dealerScore === 4 || dealerScore === 5 || dealerScore === 6) {
-          if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.wrongChoice);
-          } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.rightChoice);
-          }
+          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
         } else {
-          if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.rightChoice);
-          } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.wrongChoice);
-          }
+          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
         }
       } else if (
         userScore === 13 ||
@@ -392,17 +387,9 @@ const Game: React.FC = () => {
           dealerScore === 5 ||
           dealerScore === 6
         ) {
-          if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.wrongChoice);
-          } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.rightChoice);
-          }
+          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
         } else {
-          if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.rightChoice);
-          } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.wrongChoice);
-          }
+          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
         }
       }
     }
@@ -449,6 +436,30 @@ const Game: React.FC = () => {
     }
   };
 
+  const getScore = (cards: any, score: any) => {
+    if (
+      cards.filter((card: any) => {
+        return card.value === "A";
+      }).length >= 1 &&
+      score != 21
+    ) {
+      let totalValue = 0;
+      cards.map((card: any) => {
+        if (card.value == "A") {
+          totalValue += 11;
+        } else if (card.value == ("K" || "Q" || "J")) {
+          totalValue += 10;
+        } else {
+          totalValue += parseInt(card.value);
+        }
+      });
+      if (totalValue <= 21) {
+        return `${userScore}/${userScore - 10}`;
+      }
+    }
+    return `${userScore}`;
+  };
+
   return (
     <div className={styles.gameBackground}>
       <Status
@@ -461,7 +472,10 @@ const Game: React.FC = () => {
         stand={stand}
         resetGame={resetGame}
         displayTotal={displayTotal}
+        dealerHelp={dealerHelp}
+        dealerMessage={dealerMessage}
         toggleDisplayTotal={toggleDisplayTotal}
+        toggleDealerHelp={toggleDealerHelp}
       />
       <div className={styles.handSection}>
         <Hand
@@ -469,7 +483,9 @@ const Game: React.FC = () => {
           cards={dealerCards}
         />
         <Hand
-          title={`Your Hand ${displayTotal ? `(${userScore})` : ""}`}
+          title={`Your Hand ${
+            displayTotal ? `(${getScore(userCards, userScore)})` : ""
+          }`}
           cards={userCards}
         />
       </div>

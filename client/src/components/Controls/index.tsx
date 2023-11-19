@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Controls.module.css";
 import ReactSwitch from "react-switch";
+import { useKeyPress } from "../../modules/useKeyPress";
 
 type ControlsProps = {
   gameState: number;
@@ -10,7 +11,9 @@ type ControlsProps = {
   standEvent: any;
   resetEvent: any;
   displayTotal: boolean;
+  dealerHelp: boolean;
   toggleDisplayTotal: any;
+  toggleDealerHelp: any;
 };
 
 const Controls: React.FC<ControlsProps> = ({
@@ -21,21 +24,46 @@ const Controls: React.FC<ControlsProps> = ({
   standEvent,
   resetEvent,
   displayTotal,
+  dealerHelp,
   toggleDisplayTotal,
+  toggleDealerHelp,
 }) => {
   const onBetClick = () => {
     playEvent();
   };
 
-  const toggleScore = (val: any) => {
+  const toggleScore = (val: boolean) => {
     toggleDisplayTotal(val);
   };
+
+  const toggleHelp = (val: boolean) => {
+    toggleDealerHelp(val);
+  };
+
+  const onKeyPress = (event: any) => {
+    if (event.key === 'a' && !buttonState.hitDisabled) {
+      hitEvent();
+    } else if (event.key === 's' && !buttonState.standDisabled) {
+      standEvent();
+    } else if (event.key === 'd' && !buttonState.resetDisabled) {
+      resetEvent();
+    } else if (event.key === 'w') {
+      toggleScore(!displayTotal);
+    } else if (event.key === 'e') {
+      toggleHelp(!dealerHelp);
+    }
+  }
+
+  useKeyPress(['a','s','d','w','e'], onKeyPress);
 
   const getControls = () => {
     if (gameState === 0) {
       return (
         <div className={styles.controlsContainer}>
-          <button onClick={() => onBetClick()} className={styles.button}>
+          <button
+            onClick={() => onBetClick()}
+            className={styles.button}
+          >
             Play
           </button>
         </div>
@@ -44,9 +72,13 @@ const Controls: React.FC<ControlsProps> = ({
       return (
         <div className={styles.controlsContainer}>
           <div className={styles.column}>
-            <div className={styles.totalContainer}>
-              <h2 className={styles.totalText}>Toggle Total</h2>
+            <div className={styles.toggleContainer}>
+              <h2 className={styles.toggleText}>Toggle Total (W)</h2>
               <ReactSwitch checked={displayTotal} onChange={toggleScore} />
+            </div>
+            <div className={styles.toggleContainer}>
+              <h2 className={styles.toggleText}>Toggle Help (E)</h2>
+              <ReactSwitch checked={dealerHelp} onChange={toggleHelp} />
             </div>
             <div className={styles.row}>
               <button
@@ -54,21 +86,21 @@ const Controls: React.FC<ControlsProps> = ({
                 disabled={buttonState.hitDisabled}
                 className={styles.button}
               >
-                Hit
+                Hit (A)
               </button>
               <button
                 onClick={() => standEvent()}
                 disabled={buttonState.standDisabled}
                 className={styles.button}
               >
-                Stand
+                Stand (S)
               </button>
               <button
                 onClick={() => resetEvent()}
                 disabled={buttonState.resetDisabled}
                 className={styles.button}
               >
-                Reset
+                New Hand (D)
               </button>
             </div>
           </div>
