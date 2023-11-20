@@ -32,8 +32,28 @@ const Game: React.FC = () => {
     noChoice = "",
     underElevenHit = "That was the correct choice! In this scenario, you cannot bust so it is better to hit!",
     underElevenStand = "That was the wrong choice. In this scenario, you cannot bust so it is better to hit!",
-    rightChoice = "Filler",
-    wrongChoice = "Filler2",
+    aceUnderSixHit = "That was the correct choice! In this scenario, you cannot bust and have better chances of hitting 21 so it is better to hit!",
+    aceUnderSixStand = "That was the wrong choice. In this scenario, you cannot bust and have better chances of hitting 21 so it is better to hit!",
+    aceAboveNineHit = "That was the wrong choice. In this scenario, it is better to stand because the only way the dealer can beat you is if they hit 21, so your chances of winning are very high!",
+    aceAboveNineStand = "That was the correct choice! In this scenario, it is better to stand because the only way the dealer can beat you is if they hit 21, so your chances of winning are very high!",
+    aboveSeventeenHit = "That was the wrong choice. In this scenario, it is better to stand because your chances of busting are higher!",
+    aboveSeventeenStand = "That was the correct choice! In this scenario, it is better to stand because your chances of busting are higher!",
+    aceSevenSCHit = "That was the wrong choice. In this scenario, it is better to stand because the chances of the dealer having to stay at a hand lower than yours or busting are higher!",
+    aceSevenSCStand = "That was the correct choice! In this scenario, it is better to stand because the chances of the dealer having to stay at a hand lower than yours or busting are higher!",
+    aceSevenHCHit = "That was the correct choice! In this scenario, it is better to hit because the dealer will have a higher chance of having a higher hand or having to hit again so it is better to hit and take your chances!",
+    aceSevenHCStand = "That was the wrong choice. In this scenario, it is better to hit because the dealer will have a higher chance of having a higher hand or having to hit again so it is better to hit and take your chances!",
+    aceEightSCHit = "That was the wrong choice. In this scenario, it is better to stand because there are only two hands that the dealer could have to beat yours, which means they will most likely bust.",
+    aceEightSCStand = "That was the correct choice! In this scenario, it is better to stand because there are only two hands that the dealer could have to beat yours, which means they will most likely bust.",
+    aceEightHCHit = "That was the correct choice! In this scenario, it is better to hit because your chances there are no risk in hitting and the dealer will most likely bust!",
+    aceEightHCStand = "That was the wrong choice. In this scenario, it is better to hit because your chances there are no risk in hitting and the dealer will most likely bust!",
+    specialTwelveSCHit = "That was the wrong choice. In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTwelveSCStand = "That was the correct choice! In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTwelveHCHit = "That was the correct choice! In this scenario, it is better to hit because the dealers chances of busting are extremely low so it is better to hit and take your chances!",
+    specialTwelveHCStand = "That was the wrong choice. In this scenario, it is better to hit because the dealers chances of busting are extremely low so it is better to hit and take your chances!",
+    specialTeensSCHit = "That was the wrong choice. In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTeensSCStand = "That was the correct choice! In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTeensHCHit = "That was the correct choice! In this scenario, it is better to hit because the dealers chances of winning are high so it is better to hit and take your chances.",
+    specialTeensHCStand = "That was the wrong choice. In this scenario, it is better to hit because the dealers chances of winning are high so it is better to hit and take your chances.",
   }
 
   enum UserChoseTo {
@@ -309,18 +329,18 @@ const Game: React.FC = () => {
         }
 
         if (totalOfOtherCards <= 6) {
-          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
+          setMessages(Choice.aceUnderSixHit, Choice.aceUnderSixStand, DealerMessage.hitMessage);
         } else if (
           totalOfOtherCards >= 9 &&
           totalOfOtherCards <= 10 &&
           userChoseTo == UserChoseTo.hit
         ) {
-          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
+          setMessages(Choice.aceAboveNineHit, Choice.aceAboveNineStand, DealerMessage.standMessage);
         }
       }
     } else if (userScore >= 17) {
       // otherwise, if 17 or above then stand
-      setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
+      setMessages(Choice.aboveSeventeenHit, Choice.aboveSeventeenStand, DealerMessage.standMessage);
     } else {
       // edge cases
       // user has an A/7 or A/8
@@ -342,9 +362,9 @@ const Game: React.FC = () => {
 
         if (sumOfUserCards === 7) {
           if (dealerScore == 7 || dealerScore === 8) {
-            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
+            setMessages(Choice.aceSevenSCHit, Choice.aceSevenSCStand, DealerMessage.standMessage);
           } else {
-            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
+            setMessages(Choice.aceSevenHCHit, Choice.aceSevenHCStand, DealerMessage.hitMessage);
           }
         } else if (sumOfUserCards === 8) {
           if (
@@ -358,9 +378,9 @@ const Game: React.FC = () => {
             dealerScore === 10 ||
             dealerScore === 11
           ) {
-            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
+            setMessages(Choice.aceEightSCHit, Choice.aceEightSCStand, DealerMessage.standMessage);
           } else {
-            setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
+            setMessages(Choice.aceEightHCHit, Choice.aceEightHCStand, DealerMessage.hitMessage);
           }
         }
       }
@@ -369,9 +389,9 @@ const Game: React.FC = () => {
       else if (userScore === 12) {
         // if dealer has 4, 5, or 6 then stand
         if (dealerScore === 4 || dealerScore === 5 || dealerScore === 6) {
-          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
+          setMessages(Choice.specialTwelveSCHit, Choice.specialTwelveSCStand, DealerMessage.standMessage);
         } else {
-          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
+          setMessages(Choice.specialTwelveHCHit, Choice.specialTeensHCStand, DealerMessage.hitMessage);
         }
       } else if (
         userScore === 13 ||
@@ -387,9 +407,9 @@ const Game: React.FC = () => {
           dealerScore === 5 ||
           dealerScore === 6
         ) {
-          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.standMessage);
+          setMessages(Choice.specialTeensSCHit, Choice.specialTeensSCStand, DealerMessage.standMessage);
         } else {
-          setMessages(Choice.rightChoice, Choice.wrongChoice, DealerMessage.hitMessage);
+          setMessages(Choice.specialTeensHCHit, Choice.specialTeensHCStand, DealerMessage.hitMessage);
         }
       }
     }
