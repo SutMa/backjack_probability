@@ -59,7 +59,6 @@ const Game: React.FC = () => {
   enum UserChoseTo {
     hit = "hit",
     stand = "stand",
-    total = "total",
     ignore = "ignore",
   }
 
