@@ -32,8 +32,28 @@ const Game: React.FC = () => {
     noChoice = "",
     underElevenHit = "That was the correct choice! In this scenario, you cannot bust so it is better to hit!",
     underElevenStand = "That was the wrong choice. In this scenario, you cannot bust so it is better to hit!",
-    rightChoice = "Filler",
-    wrongChoice = "Filler2",
+    aceUnderSixHit = "That was the correct choice! In this scenario, you cannot bust and have better chances of hitting 21 so it is better to hit!",
+    aceUnderSixStand = "That was the wrong choice. In this scenario, you cannot bust and have better chances of hitting 21 so it is better to hit!",
+    aceAboveNineHit = "That was the wrong choice. In this scenario, it is better to stand because the only way the dealer can beat you is if they hit 21, so your chances of winning are very high!",
+    aceAboveNineStand = "That was the correct choice! In this scenario, it is better to stand because the only way the dealer can beat you is if they hit 21, so your chances of winning are very high!",
+    aboveSeventeenHit = "That was the wrong choice. In this scenario, it is better to stand because your chances of busting are higher!",
+    aboveSeventeenStand = "That was the correct choice! In this scenario, it is better to stand because your chances of busting are higher!",
+    aceSevenHit = "That was the wrong choice. In this scenario, it is better to stand because the chances of the dealer having to stay at a hand lower than yours or busting are higher!",
+    aceSevenStand = "That was the correct choice! In this scenario, it is better to stand because the chances of the dealer having to stay at a hand lower than yours or busting are higher!",
+    aceSeven2Hit = "That was the correct choice! In this scenario, it is better to hit because the dealer will have a higher chance of having a higher hand or having to hit again so it is better to hit and take your chances!",
+    aceSeven2Stand = "That was the wrong choice. In this scenario, it is better to hit because the dealer will have a higher chance of having a higher hand or having to hit again so it is better to hit and take your chances!",
+    aceEightSCHit = "That was the wrong choice. In this scenario, it is better to stand because there are only two hands that the dealer could have to beat yours, which means they will most likely bust.",
+    aceEightSCStand = "That was the correct choice! In this scenario, it is better to stand because there are only two hands that the dealer could have to beat yours, which means they will most likely bust.",
+    aceEightHCHit = "That was the correct choice! In this scenario, it is better to hit because your chances there are no risk in hitting and the dealer will most likely bust!",
+    aceEightHCStand = "That was the wrong choice. In this scenario, it is better to hit because your chances there are no risk in hitting and the dealer will most likely bust!",
+    specialTwelveSCHit = "That was the wrong choice. In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTwelveSCStand = "That was the correct choice! In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTwelveHCHit = "That was the correct choice! In this scenario, it is better to hit because the dealers chances of busting are extremely low so it is better to hit and take your chances!",
+    specialTwelveHCStand = "That was the wrong choice. In this scenario, it is better to hit because the dealers chances of busting are extremely low so it is better to hit and take your chances!",
+    specialTeensSCHit = "That was the wrong choice. In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTeensSCStand = "That was the correct choice! In this scenario, it is better to stand because the dealers chances of busting are extremely high.",
+    specialTeensHCHit = "That was the correct choice! In this scenario, it is better to hit because the dealers chances of winning are high so it is better to hit and take your chances.",
+    specialTeensHCStand = "That was the wrong choice. In this scenario, it is better to hit because the dealers chances of winning are high so it is better to hit and take your chances.",
   }
 
   enum UserChoseTo {
@@ -279,30 +299,30 @@ const Game: React.FC = () => {
         }
 
         if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.hit) {
-          setChoice(Choice.rightChoice);
+          setChoice(Choice.aceUnderSixHit);
         } else if (totalOfOtherCards <= 6 && userChoseTo == UserChoseTo.stand) {
-          setChoice(Choice.wrongChoice);
+          setChoice(Choice.aceUnderSixStand);
         } else if (
           totalOfOtherCards >= 9 &&
           totalOfOtherCards <= 10 &&
           userChoseTo == UserChoseTo.hit
         ) {
-          setChoice(Choice.wrongChoice);
+          setChoice(Choice.aceAboveNineHit);
         } else if (
           totalOfOtherCards >= 9 &&
           totalOfOtherCards <= 10 &&
           userChoseTo == UserChoseTo.stand
         ) {
-          setChoice(Choice.rightChoice);
+          setChoice(Choice.aceAboveNineStand);
         }
       }
     }
 
     // otherwise, if 17 or above then stand
     else if (userScore >= 17 && userChoseTo == UserChoseTo.hit) {
-      setChoice(Choice.wrongChoice);
+      setChoice(Choice.aboveSeventeenHit);
     } else if (userScore >= 17 && userChoseTo == UserChoseTo.stand) {
-      setChoice(Choice.rightChoice);
+      setChoice(Choice.aboveSeventeenStand);
     }
     
     // edge cases
@@ -341,15 +361,15 @@ const Game: React.FC = () => {
         if (sumOfUserCards === 7) {
           if (valueShowing == 7 || valueShowing === 8) {
             if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.wrongChoice);
+              setChoice(Choice.aceSevenHit);
             } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.rightChoice);
+              setChoice(Choice.aceSevenStand);
             }
           } else {
             if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.rightChoice);
+              setChoice(Choice.aceSeven2Hit);
             } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.wrongChoice);
+              setChoice(Choice.aceSeven2Stand);
             }
           }
         } else if (sumOfUserCards === 8) {
@@ -366,15 +386,15 @@ const Game: React.FC = () => {
             valueShowing === 11
           ) {
             if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.wrongChoice);
+              setChoice(Choice.aceEightSCHit);
             } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.rightChoice);
+              setChoice(Choice.aceEightSCStand);
             }
           } else {
             if (userChoseTo === UserChoseTo.hit) {
-              setChoice(Choice.rightChoice);
+              setChoice(Choice.aceEightHCHit);
             } else if (userChoseTo === UserChoseTo.stand) {
-              setChoice(Choice.wrongChoice);
+              setChoice(Choice.aceEightHCStand);
             }
           }
         }
@@ -385,15 +405,15 @@ const Game: React.FC = () => {
         // if dealer has 4, 5, or 6 then stand
         if (valueShowing === 4 || valueShowing === 5 || valueShowing === 6) {
           if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.wrongChoice);
+            setChoice(Choice.specialTwelveSCHit);
           } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.rightChoice);
+            setChoice(Choice.specialTwelveSCStand);
           }
         } else {
           if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.rightChoice);
+            setChoice(Choice.specialTwelveHCHit);
           } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.wrongChoice);
+            setChoice(Choice.specialTwelveHCStand);
           }
         }
       } else if (
@@ -411,15 +431,15 @@ const Game: React.FC = () => {
           valueShowing === 6
         ) {
           if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.wrongChoice);
+            setChoice(Choice.specialTeensSCHit);
           } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.rightChoice);
+            setChoice(Choice.specialTeensSCStand);
           }
         } else {
           if (userChoseTo === UserChoseTo.hit) {
-            setChoice(Choice.rightChoice);
+            setChoice(Choice.specialTeensHCHit);
           } else if (userChoseTo === UserChoseTo.stand) {
-            setChoice(Choice.wrongChoice);
+            setChoice(Choice.specialTeensHCStand);
           }
         }
       }
