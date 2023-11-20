@@ -1,4 +1,4 @@
-export const HOME = "/blackjack_probability";
+export const HOME = "/blackjack_probability/";
 export const ABOUT_US = "/blackjack_probability/about-us";
 export const CHARTS = "/blackjack_probability/charts";
 export const TERMS = "/blackjack_probability/terms";

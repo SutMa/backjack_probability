@@ -89,7 +89,7 @@ const Terms = () => {
             {data.map((data,i) => {
                 return (
                     <div className='term-row' key={i}>
-                        <h1 className='term-text'>{data.term}:</h1>
+                        <h1 className='term-title'>{data.term}:</h1>
                         <p className='term-text'>{data.definition}</p>
                     </div>
                 )

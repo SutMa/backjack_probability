@@ -11,22 +11,26 @@ export const PrimaryNav = styled.nav`
 `
 
 export const MenuLink = styled(Link)`
+    flex: left;
     color: #fff;
-    display: flex;
+    display: block;
     cursor: pointer;
     align-items: center;
     text-decoration: none;
     font-size: 18px;
-    padding: 0 1.2rem;
-    height: 100%;
+    padding: 16px 14px;
     &.active {
-        text-decoration: underline;
+        border-bottom: 3px solid white;
+    }
+    &:hover {
+        border-bottom: 3px solid white;
     }
 `
 
 export const Menu = styled.div`
     display: flex;
     align-items: center;
+    overflow: hidden;
 `
 
 export const Logo = styled.h1`

@@ -4,6 +4,13 @@
     color: white;
 }
 
+.term-title {
+    font-size: 20px;
+    width: 800px;
+    color: white;
+    text-decoration: underline;
+}
+
 .term-row {
     display: flex;
     flex-direction: column;
