@@ -1,0 +1,10 @@
+.warningContainer {
+    display: flex;
+    background: yellow;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-size: 20px;
+}

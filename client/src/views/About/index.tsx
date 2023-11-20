@@ -29,11 +29,10 @@ const About = () => {
               </h1>
               <p className="about-p">
                 We believe there aren't many applications on the web suited for
-                learning how to count cards easily. Most of the methods used
-                today are charts that you must memorize for different true
-                counts. We want to create a user-friendly website that allows
-                people to learn these deviations without memorizing a set of
-                tables.
+                learning blackjack. Most of the methods used today are games that
+                are more focused on gameplay than teaching. We want to create a
+                user-friendly website that allows people to learn how to play
+                without risking their hard-earned money.
               </p>
             </div>
           </div>

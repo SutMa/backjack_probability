@@ -16,6 +16,7 @@ export const MenuLink = styled(Link)`
     cursor: pointer;
     align-items: center;
     text-decoration: none;
+    font-size: 18px;
     padding: 0 1.2rem;
     height: 100%;
     &.active {

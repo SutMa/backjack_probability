@@ -1,18 +1,17 @@
 .card {
-  width: 130px;
-  height: 250px;
+  width: 90px;
+  height: 210px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background: rgb(230, 230, 230);
   border-radius: 15px;
   box-shadow: 0px 1px 10px rgb(0, 0, 0);
   cursor: default;
-  
 }
 
 .baseStyleRed {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-image: linear-gradient(
@@ -33,8 +32,8 @@
 }
 
 .baseStyleBlue {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-image: linear-gradient(
@@ -55,8 +54,8 @@
 }
 
 .baseStyleGreen {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-image: linear-gradient(
@@ -77,8 +76,8 @@
 }
 
 .baseStyleUnique {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-color: #33cccc;
@@ -111,8 +110,8 @@
 }
 
 .gradientStyleRed {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-color: #fc8e8e;
@@ -124,8 +123,8 @@
 }
 
 .gradientStyleBlue {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-color: #8ec5fc;
@@ -137,8 +136,8 @@
 }
 
 .gradientStyleGreen {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-color: #8efc99;
@@ -150,8 +149,8 @@
 }
 
 .gradientStyleUnique {
-  width: 125px;
-  height: 240px;
+  width: 85px;
+  height: 200px;
   margin: 20px;
   padding: 0.5em 1.5em;
   background-image: linear-gradient(to left, rgb(255, 196, 0), #ff357f 25%, #ff357f 75%, rgb(255, 196, 0) 100%);

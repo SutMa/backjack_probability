@@ -11,6 +11,7 @@ import Customize from "./views/Customize";
 import * as ROUTES from "./data/routes";
 import { CardColor, CardStyle, MyCardContext } from "./modules/cardData";
 import { useState } from "react";
+import GamblingProblem from "./components/GamblingProblem";
 
 const App = () => {
   const [cardColor, setCardColor] = useState<CardColor>(CardColor.RED);
@@ -21,6 +22,7 @@ const App = () => {
       <MyCardContext.Provider
         value={{ cardColor, setCardColor, cardStyle, setCardStyle }}
       >
+        <GamblingProblem />
         <Navbar />
         <Routes>
           <Route path={ROUTES.HOME} element={<Welcome />} />
